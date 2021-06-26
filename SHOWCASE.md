@@ -10,6 +10,7 @@
   * Automatic builds
   * Dockerization
   * Automatic deployments
+  * Code branching
 
 ### Database design/Implementation
 * Normalized relational database
