@@ -10,7 +10,7 @@ function App() {
   const options = useSelector((state: ApplicationState) => state.searchBarReducer.options)
 
   useEffect(() => {
-    dispatch(searchBarActions.setDropdownOptions([]))
+    // dispatch(searchBarActions.setDropdownOptions([]))
   })
 
   function onChange(e: ChangeEvent<HTMLInputElement>) {
