@@ -51,7 +51,7 @@ export class UserResolver {
     const postData = data.posts?.map((post) => {
       return {
         likeCount: post.likeCount,
-        contentType: post.contentType || undefined
+        postType: post.postType || undefined
       }
     })
 
@@ -67,7 +67,7 @@ export class UserResolver {
   }
 
   @Query(() => [User])
-  async allUsers(@Ctx() ctx: Context) {
+  async getAllUsers(@Ctx() ctx: Context) {
     return ctx.prisma.user.findMany()
   }
 
