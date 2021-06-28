@@ -32,7 +32,7 @@ class UserCreateInput {
 export class UserResolver {
   
   @FieldResolver()
-  async getUserPosts(@Root() user: User, @Ctx() ctx: Context): Promise<Post[]> {
+  async posts(@Root() user: User, @Ctx() ctx: Context): Promise<Post[]> {
     return ctx.prisma.user
       .findUnique({
         where: {
@@ -67,7 +67,7 @@ export class UserResolver {
   }
 
   @Query(() => [User])
-  async getAllUsers(@Ctx() ctx: Context) {
+  async allUsers(@Ctx() ctx: Context) {
     return ctx.prisma.user.findMany()
   }
 
