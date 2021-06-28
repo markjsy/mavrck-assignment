@@ -9,8 +9,13 @@ import {
   InputType,
   Field,
 } from 'type-graphql'
-import { Post } from './Post'
-import { Context } from './Context'
+import { Post } from '../model/Post'
+import { Context } from '../Context'
+
+export enum SortOrder {
+  asc = 'asc',
+  desc = 'desc'
+}
 
 @InputType()
 export class PostCreateInput {

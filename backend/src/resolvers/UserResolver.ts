@@ -11,9 +11,9 @@ import {
   InputType,
   Field,
 } from 'type-graphql'
-import { Post } from './Post'
-import { User } from './User'
-import { Context } from './Context'
+import { Post } from '../model/Post'
+import { User } from '../model/User'
+import { Context } from '../Context'
 import { PostCreateInput } from './PostResolver'
 
 @InputType()
