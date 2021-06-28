@@ -7,14 +7,13 @@
 
 ### DevOps
 * CD/CI
-  * Automatic builds
   * Dockerization
+  * Automatic builds
   * Automatic deployments
   * Code branching
 
 ### Database design/Implementation
 * Normalized relational database
-* Graph databases
 
 ### Frontend
 * React with Hooks + Redux
@@ -22,8 +21,7 @@
 * Test suites
 
 ### Backend
-* REST
-* GraphQL
+* ORM GraphQL
 
 ### Other
 * Code documentation
@@ -39,7 +37,6 @@
 
 ### Database
 * Postgres
-* Neo4js
 
 ### Languages
 * TypeScript
@@ -57,6 +54,7 @@
 * Kubernetes
 
 ### Other
+* Apollo Server
 * Elastisearch
 * AWS (Cloud)
 * Swagger (Documentation)
