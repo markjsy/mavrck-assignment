@@ -18,19 +18,30 @@ import { PostCreateInput } from './PostResolver'
 
 @InputType()
 class UserCreateInput {
-  @Field({nullable: false})
-  userName: string 
+  @Field({ nullable: false })
+  userName: string
 
-  @Field({nullable: true})
-  fullName: string 
+  @Field({ nullable: true })
+  fullName: string
+
+  @Field({ nullable: true })
+  followerCount: number
+
+  @Field({ nullable: true })
+  biography: string
 
   @Field((type) => [PostCreateInput], { nullable: true })
   posts: [PostCreateInput]
 }
 
+
+
+
+
+
 @Resolver(User)
 export class UserResolver {
-  
+
   @FieldResolver()
   async posts(@Root() user: User, @Ctx() ctx: Context): Promise<Post[]> {
     return ctx.prisma.user

@@ -5,7 +5,6 @@ import {
   Mutation,
   Arg,
   Ctx,
-
   Int,
   InputType,
   Field,
@@ -19,13 +18,15 @@ export class PostCreateInput {
   likeCount: number
 
   @Field({ nullable: true })
+  commentCount: number
+
+  @Field({ nullable: true })
   postType: string
+
+  @Field({ nullable: true })
+  mediaURL: string
 }
 
-export enum SortOrder {
-  asc = 'asc',
-  desc = 'desc'
-}
 
 @Resolver(Post)
 export class PostResolver {
