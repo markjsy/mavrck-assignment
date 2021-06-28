@@ -13,7 +13,7 @@ import {
 } from 'type-graphql'
 import { Post } from '../model/Post'
 import { User } from '../model/User'
-import { Context } from '../Context'
+import { Context } from '../singleton/Context'
 import { PostCreateInput } from './PostResolver'
 
 @InputType()

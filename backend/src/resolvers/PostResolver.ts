@@ -10,7 +10,7 @@ import {
   Field,
 } from 'type-graphql'
 import { Post } from '../model/Post'
-import { Context } from '../Context'
+import { Context } from '../singleton/Context'
 
 export enum SortOrder {
   asc = 'asc',

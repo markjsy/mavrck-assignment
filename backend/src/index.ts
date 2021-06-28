@@ -4,7 +4,7 @@ import { PostCreateInput, PostResolver, SortOrder } from './resolvers/PostResolv
 import { UserResolver } from './resolvers/UserResolver'
 import { ApolloServer } from 'apollo-server'
 import { DateTimeResolver } from 'graphql-scalars'
-import { context } from './Context'
+import { context } from './singleton/Context'
 import { GraphQLScalarType } from 'graphql'
 
 
