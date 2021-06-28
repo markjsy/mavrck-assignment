@@ -34,11 +34,6 @@ class UserCreateInput {
   posts: [PostCreateInput]
 }
 
-
-
-
-
-
 @Resolver(User)
 export class UserResolver {
 
