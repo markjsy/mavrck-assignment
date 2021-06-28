@@ -31,7 +31,7 @@ export enum SortOrder {
 export class PostResolver {
 
   @Query((returns) => Post, { nullable: true })
-  async postById(@Arg('id') id: number, @Ctx() ctx: Context) {
+  async getPostById(@Arg('id') id: number, @Ctx() ctx: Context) {
     return ctx.prisma.post.findFirst({
       where: { id },
     })
