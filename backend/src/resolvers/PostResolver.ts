@@ -43,6 +43,11 @@ export class PostResolver {
     })
   }
 
+  @Query( (returns) => [Post], {nullable: true})
+  async getAllPosts(@Ctx() ctx: Context){
+    return ctx.prisma.post.findMany();
+  }
+
   @Mutation((returns) => Post, { nullable: true })
   async incrementLikeCount(@Arg('id', (type) => Int) id: number, @Ctx() ctx: Context) {
     return ctx.prisma.post.update({

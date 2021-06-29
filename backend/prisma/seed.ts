@@ -4,8 +4,8 @@ const prisma = new PrismaClient()
 
 const userData: any = [
   {
-    userName: 'Mvrck1',
-    biography: 'Here is the bio of Mvrck1',
+    userName: 'Mavrck1',
+    biography: 'Here is the bio of Mavrck1',
     fullName: 'Mav Rck1',
     followerCount: 100,
     posts: {
@@ -21,8 +21,8 @@ const userData: any = [
     
   },
   {
-    userName: 'Mvrck2',
-    biography: 'Here is the bio of Mvrck2',
+    userName: 'Mavrck2',
+    biography: 'Here is the bio of Mavrck2',
     fullName: 'Mav Rck2',
     followerCount: 100,
     posts: {
@@ -37,8 +37,8 @@ const userData: any = [
     },
   },
   {
-    userName: 'Mvrck3',
-    biography: 'Here is the bio of Mvrck3',
+    userName: 'Mavrck3',
+    biography: 'Here is the bio of Mavrck3',
     fullName: 'Mav Rck3',
     followerCount: 100,
     posts: {
