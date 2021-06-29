@@ -3,7 +3,7 @@ import './App.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchBarActions } from '../../actions/searchBarActions';
-import { ApplicationState } from '../../reducers';
+import { ApplicationState } from '../../interfaces/interface';
 
 function App() {
   const dispatch = useDispatch();
@@ -15,6 +15,7 @@ function App() {
 
   function onChange(e: ChangeEvent<HTMLInputElement>) {
     dispatch(searchBarActions.setSearchInput(e.target.value))
+    dispatch(searchBarActions.thunkTest())
   }
 
   function Heading({ title }: { title: string }): ReactElement {
