@@ -1,5 +1,5 @@
-# mvrck-assignment
-Implementation of the Mvrck's take home assigment. Skills to demonstrate:
+# mavrck-assignment
+Implementation of the Mavrck's take home assigment. Skills to demonstrate:
 * Software Development
 * System Design
 * DevOps
