@@ -24,6 +24,7 @@
 * ORM GraphQL
 
 ### Other
+* Puppeteer
 * Code documentation
 * Cloud use
 * Code branches
