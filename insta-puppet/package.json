@@ -1,0 +1,24 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "scripts": {
+    "producer": "npx ts-node producer/producer.ts",
+    "consumer": "npx ts-node consumer/consumer.ts"
+  },
+  "dependencies": {
+    "@types/amqplib": "^0.8.0",
+    "amqplib": "^0.8.0",
+    "dotenv": "^10.0.0",
+    "node-fetch": "^2.6.1",
+    "puppeteer": "^10.0.0",
+    "ts-node": "10.0.0",
+    "ts-node-dev": "1.1.6",
+    "typescript": "4.3.4"
+  },
+  "devDependencies": {}
+}
