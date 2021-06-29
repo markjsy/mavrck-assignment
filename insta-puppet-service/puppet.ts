@@ -14,7 +14,6 @@ export async function getUserInformation(user) {
     await page.goto(`https://instagram.com/${user}/channel/?__a=1`);
     const element = await page.$("pre");
     const text = await page.evaluate(element => element.textContent, element);
-    console.log(text)
     await browser.close();
 }
 
