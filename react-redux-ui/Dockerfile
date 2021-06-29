@@ -4,12 +4,11 @@ LABEL MAINTAINER Mark Sy <mark.jesse.sy@gmail.com>
 
 
 RUN apk add git
+ADD . / frontend/
+RUN (cd frontend/; npm install;)
+RUN (npm run build)
+ 
 
-COPY ./package.json ./package.json
-COPY ./consumer ./consumer
-COPY ./config ./config
+EXPOSE 3000
 
-EXPOSE 5000
-
-RUN npm install 
-CMD  ["npm", "run" , "consumer"]
+CMD  ["npm", "start" , "consumer"]
