@@ -1,4 +1,4 @@
-const GRAPHQL_URL = 'http://localhost:4000/graphql'
+const GRAPHQL_URL = 'http://localhost:3000/graphql'
 const INSTAGRAM_URL = 'https://www.instagram.com'
 
 
