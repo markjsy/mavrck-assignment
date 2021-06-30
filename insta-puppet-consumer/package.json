@@ -7,8 +7,8 @@
   "author": "",
   "license": "ISC",
   "scripts": {
-    "producer": "npx ts-node producer/producer.ts",
-    "consumer": "npx ts-node consumer/consumer.ts"
+    "start": "npx ts-node consumer/consumer.ts",
+    "dev": "ts-node-dev --no-notify --respawn --transpile-only consumer/consumer.ts"
   },
   "dependencies": {
     "@types/amqplib": "^0.8.0",
