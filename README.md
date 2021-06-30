@@ -13,9 +13,26 @@ docker pull postgres
 
 5) In your terminal run:
 
-Mac:
-sudo ./start_app.bash
-
-Linux:
+Linux (Ubuntu):
 sudo su
-./start_app.bash
+./deploy_prod.bash
+
+Mac:
+sudo ./deploy_prod.bash
+
+Note:
+deploy_prod.bash may take 10-15min to fully deploy
+
+## Links
+UI
+http://0.0.0.0:5000/
+
+GraphQL
+http://0.0.0.0:1000/graphql
+
+RabbitMQ - Live view of queue
+http://0.0.0.0:15672/
+username = guest
+password = guest
+
+
