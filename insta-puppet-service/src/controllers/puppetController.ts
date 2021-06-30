@@ -11,8 +11,9 @@ const addUserRabbitMQ = async (req: Request, res: Response, next: NextFunction) 
         const connection = await amqplib.connect(RABBIT_AMQP_URL);
         const channel = await connection.createChannel();
         const result = await channel.assertQueue('puppet');
-        channel.sendToQueue('puppet', Buffer.from(JSON.stringify(msg)));
-
+        channel.sendToQueue('puppet', Buffer.from(JSON.stringify(msg)) );
+        console.log("Sent to queue: " + Buffer.from(JSON.stringify(msg)) );
+     
         /*
         channel.consume('puppet', (msg: any) => {
             console.log(msg.content.toString());

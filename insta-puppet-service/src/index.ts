@@ -67,7 +67,7 @@ app.post('/addUser', async function (req: any, res: any) {
     }
     `;
 
-    const result = await fetch('http://localhost:3100/graphql', {
+    const result = await fetch('http://rabbitmq:3100/graphql', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
