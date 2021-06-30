@@ -24,8 +24,8 @@ const app = async () => {
     const app = express();
     server.applyMiddleware({ app });
 
-    await new Promise((_resolve): any => app.listen({ port: 1000 }));
-    console.log(`🚀 Server ready at http://0.0.0.0:1000${server.graphqlPath}`);
+    await new Promise((_resolve): any => app.listen({ port: 2500 }));
+    console.log(`🚀 Server ready at http://0.0.0.0:2500${server.graphqlPath}`);
 };
 
 app();
