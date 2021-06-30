@@ -6,12 +6,9 @@ WORKDIR /app
 COPY . .
 
 RUN apk add git
-RUN npm install -g npx
-RUN npx prisma migrate dev
-RUN npx prisma db seed --preview-feature
 RUN npm install
 RUN npm run build
-RUN  cd build
+RUN cd build
 
 EXPOSE 2000
 CMD  ["node", "/app/build/index.js" ]

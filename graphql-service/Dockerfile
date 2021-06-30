@@ -5,10 +5,11 @@ WORKDIR /app
 COPY . .
 
 RUN apk add git
+RUN apk add --no-cache --upgrade bash
+RUN chmod a+rx setup.bash
 RUN npm install
 RUN npm run build
-RUN npx prisma migrate dev
-RUN npx prisma db seed --preview-feature
 
 EXPOSE 1000
-CMD  ["node", "/app/build/index.js" ]
+
+CMD  ["/app/setup.bash" ]

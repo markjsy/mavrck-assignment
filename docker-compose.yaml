@@ -1,0 +1,76 @@
+version: '3'
+services:
+    rabbitmq:
+        image: rabbitmq:3-management
+        healthcheck:
+            test: rabbitmq-diagnostics -q ping
+            interval: 30s
+            timeout: 30s
+            retries: 7
+        ports:
+            - 5672:5672
+        environment:
+            - NONE=NONE
+
+    postgres:
+        image: postgres
+        ports:
+            - 5432:5432
+        environment:
+            - POSTGRES_PASSWORD=mysecretpassword 
+    
+    graphql-service:
+        image: graphql-service
+        command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; /app/setup.bash'
+        depends_on: 
+            - postgres
+        links:
+            - postgres
+        ports:
+            - 1000:1000
+        environment:
+            - NONE=NONE
+
+    insta-puppet-consumer-1:
+        image: insta-puppet-consumer
+        depends_on: 
+            - rabbitmq
+        ports:
+            - 6000:6000
+        links:
+            - rabbitmq
+            - graphql-service
+        environment:
+            - QUEUE_NAME=puppet
+            - AMQP_HOST=rabbitmq:5672
+
+    insta-puppet-consumer-2:
+        image: insta-puppet-consumer
+        depends_on: 
+            - rabbitmq
+        ports:
+            - 6100:6100
+        links:
+            - rabbitmq
+            - graphql-service
+        environment:
+            - QUEUE_NAME=puppet
+            - AMQP_HOST=rabbitmq:5672
+
+    insta-puppet-service:
+        image: insta-puppet-service
+        ports:
+            - 2000:2000
+        links:
+            - rabbitmq
+        environment:
+            - NONE=NONE
+
+    react-redux-ui:
+        image: react-redux-ui
+        links:
+            - rabbitmq
+        ports:
+            - 5000:5000
+        environment:
+            - NONE=NONE
