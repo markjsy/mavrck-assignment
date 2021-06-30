@@ -8,7 +8,9 @@ services:
             timeout: 30s
             retries: 7
         ports:
+            - 8080:8080
             - 5672:5672
+            - 15672:15672
         environment:
             - NONE=NONE
 
@@ -27,7 +29,7 @@ services:
         links:
             - postgres
         ports:
-            - 1000:1000
+            - 2500:2500
         environment:
             - NONE=NONE
 
@@ -64,7 +66,8 @@ services:
         links:
             - rabbitmq
         environment:
-            - NONE=NONE
+            - QUEUE_NAME=puppet
+            - AMQP_HOST=rabbitmq:5672
 
     react-redux-ui:
         image: react-redux-ui
