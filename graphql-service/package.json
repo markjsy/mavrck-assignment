@@ -22,8 +22,10 @@
     "class-validator": "0.13.1",
     "graphql": "^15.5.1",
     "graphql-scalars": "1.10.0",
+    "npx": "^10.2.2",
     "prettier": "^2.3.2",
-    "prisma": "2.25.0",
+    "prisma": "^2.26.0",
+
     "reflect-metadata": "0.1.13",
     "ts-node": "10.0.0",
     "ts-node-dev": "1.1.6",
@@ -34,7 +36,6 @@
   "devDependencies": {
     "@types/async-retry": "^1.4.2",
     "@types/lru-cache": "^5.1.0",
-    "@types/type-is": "^1.6.3",
-    "@types/uuid": "^8.3.0"
+    "@types/type-is": "^1.6.3"
   }
 }
