@@ -26,9 +26,7 @@
 ### Other
 * Puppeteer
 * Code documentation
-* Cloud use
 * Code branches
-* Feature flagging 
 * Error catching
 * Code monitoring
 * Linting
@@ -56,6 +54,5 @@
 
 ### Other
 * Apollo Server
-* Elastisearch
-* AWS (Cloud)
+* RabbitMQ
 * Swagger (Documentation)
