@@ -1,2 +1,2 @@
-export const RABBIT_AMQP_URL = `amqp://rabbitmq:5672`;
-export const PUPPET_QUEUE = 'puppet';
+export const RABBIT_AMQP_URL = process.env.AMQP_HOST ? `amqp://${process.env.AMQP_HOST}` : 'amqp://0.0.0.0:5672';
+export const QUEUE = process.env.QUEUE_NAME? process.env.QUEUE_NAME : 'puppet';
