@@ -1,0 +1,61 @@
+# start up rabbit queue
+    docker stop rabbit1 || true &&
+    docker rm rabbit1  || true && 
+    kill $(sudo lsof -t -i:5672) || true && 
+    docker run -d --hostname lead-rabbit --network mavrck --name rabbit1 -p 5672:5672 rabbitmq:3-management
+
+# start up insta-puppet-service
+    docker stop insta-puppet-service || true &&
+    docker rm insta-puppet-service   || true && 
+    kill $(sudo lsof -t -i:2000) || true && 
+    docker run -d --hostname insta-puppet-service --network mavrck --name insta-puppet-service -p 2000:2000 insta-puppet-service
+
+
+# start up postgres
+    docker stop mavrckdb || true &&
+    docker rm mavrckdb  || true && 
+    kill $(sudo lsof -t -i:5432) || true && 
+    docker run --name mavrckdb -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
+
+
+# start up rabbit-consumer
+    docker stop rabbit-consumer  || true &&
+    docker rm rabbit-consumer  || true && 
+    kill $(sudo lsof -t -i:6000) || true && 
+    docker run -it --rm --network mavrck --name rabbit-consumer -p 6000:6000 -e QUEUE_NAME='puppet' -e AMQP_HOST='172.18.0.2:5672' rabbit-consumer
+
+
+# Running react-redux-ui image
+    docker stop react-redux-ui || true &&
+    docker rm react-redux-ui  || true && 
+    kill $(sudo lsof -t -i:5000) || true && 
+    docker run -it --rm --network mavrck --name react-redux-ui -p 5000:5000 react-redux-ui
+
+
+# Running graphql-service image
+    docker stop graphql-service || true &&
+    docker rm graphql-service  || true && 
+    kill $(sudo lsof -t -i:1000) || true && 
+    docker run -it --rm --network mavrck --name graphql-service -p 1000:1000 graphql-service
+
+
+#build a docker file for rabbit-consumer
+    docker build -t rabbit-consumer .
+
+# build a docker file for react-redux-ui
+    docker build -t react-redux-ui .  
+
+# build a docker file for insta-puppet-service
+    docker build -tinsta-puppet-service .  
+
+# build a docker file for graphql-service
+    docker build -t graphql-service .
+
+# Migrate prisma 
+npx prisma migrate dev
+
+# Generate prisma seed
+npx prisma db seed --preview-feature
+
+# get ip of container
+docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' rabbit1
