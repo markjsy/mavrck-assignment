@@ -9,7 +9,8 @@ COPY ./package.json ./package.json
 COPY ./consumer ./consumer
 COPY ./config ./config
 
-EXPOSE 5000
+EXPOSE 6000
 
 RUN npm install 
+
 CMD  ["npm", "run" , "consumer"]
