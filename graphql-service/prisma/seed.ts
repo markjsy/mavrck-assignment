@@ -15,7 +15,7 @@ const userData: any = [
           likeCount: 321,
           commentCount: 1234,
           postType: 'VIDEO',
-          mediaURL: 'www.google.com'
+          mediaURL: 'https://photos.angel.co/startups/i/187199-8e5a4e21af81c9a7daa7ac29bd76baa4-medium_jpg.jpg?buster=1589601706'
         },
       ],
     },
@@ -32,7 +32,7 @@ const userData: any = [
           likeCount: 321,
           commentCount: 1234,
           postType: 'VIDEO',
-          mediaURL: 'www.google.com'
+          mediaURL: 'https://photos.angel.co/startups/i/187199-8e5a4e21af81c9a7daa7ac29bd76baa4-medium_jpg.jpg?buster=1589601706'
         },
       ],
     },
@@ -48,7 +48,7 @@ const userData: any = [
           likeCount: 321,
           commentCount: 1234,
           postType: 'VIDEO',
-          mediaURL: 'www.google.com'
+          mediaURL: 'https://photos.angel.co/startups/i/187199-8e5a4e21af81c9a7daa7ac29bd76baa4-medium_jpg.jpg?buster=1589601706'
         },
       ],
     },
