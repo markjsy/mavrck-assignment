@@ -38,6 +38,8 @@ export class UserResolver {
 
     @Mutation((returns) => User)
     async addUser(@Arg('data') data: UserCreateInput, @Ctx() ctx: Context): Promise<User> {
+        
+        console.log("IN THE SERVICE data.posts: ", data.posts)
         const postData = data.posts?.map((post) => {
             return {
                 likeCount: post.likeCount,
@@ -67,7 +69,7 @@ export class UserResolver {
     }
 
     @Query((returns) => User, { nullable: true })
-    async getUserByUserName(@Arg('userName') userName: string, @Ctx() ctx: Context){
+    async getUserByUserName(@Arg('userName') userName: string, @Ctx() ctx: Context) {
         return ctx.prisma.user
             .findUnique({
                 where: {

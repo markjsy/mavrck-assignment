@@ -46,32 +46,35 @@ export const GET_USER_BY_USERNAME_QUERY = (userName: string): string => `
 
 export const ADD_USER_MUTATION = (user: User, posts?: Post[]): string => {
     const userPosts = user.posts ? user.posts : null
-    const retPosts = posts ? posts : userPosts
+    const usedPosts = posts ? posts : userPosts
+    const parsedPost = JSON.stringify(usedPosts).replace(/"(\w+)":/g, '$1:'); 
     let mutation = `
-    mutation{
-    addUser(
-        data: {
-          userName: "${user.userName}"
-          fullName: "${user.fullName || null}"
-          biography: "${user.biography || null}"
-          followerCount: ${user.followerCount || null}
-          posts: ${retPosts}
+        mutation{
+            addUser(
+                data: {
+                userName: "${user.userName}"
+                fullName: "${user.fullName || null}"
+                biography: "${user.biography || null}"
+                followerCount: ${user.followerCount || null}
+                posts: ${parsedPost}
+                }
+            ) {
+                id
+                userName
+                fullName
+                biography
+                followerCount
+                posts {
+                id
+                likeCount
+                commentCount
+                mediaURL
+                publishedAt
+                }
+            }
         }
-      ) {
-        id
-        userName
-        fullName
-        biography
-        followerCount
-        posts {
-          id
-          likeCount
-          commentCount
-          mediaURL
-          publishedAt
-        }
-      }
-    }
     `
+
+    console.log("The Mutation: ", mutation)
     return mutation
 }

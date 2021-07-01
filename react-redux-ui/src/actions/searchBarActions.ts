@@ -33,15 +33,29 @@ function searchThunk() {
         const fakePosts: Post[] = [{
             commentCount: 123,
             likeCount: 553,
-            mediaURL: "www.instagrame.com/fakeurl"
+            mediaURL: "www.instagrame.com/fakeurl",
+        },{
+            commentCount: 123,
+            likeCount: 553,
+            mediaURL: "www.instagrame.com/fakeurl",
+        },
+        {
+            commentCount: 123,
+            likeCount: 553,
+            mediaURL: "www.instagrame.com/fakeurl",
+        },
+        {
+            commentCount: 123,
+            likeCount: 553,
+            mediaURL: "www.instagrame.com/fakeurl",
         }]
     
         const fakeUser: User = {
-            userName: 'fakeUser1',
+            userName: 'fakeUser7',
             fullName: 'fakeName'
         } 
         
-        const userDataResponse = await addUser(fakeUser);
+        const userDataResponse = await addUser(fakeUser, fakePosts);
         const data = userDataResponse;
         
         console.log("Response after adding User", data)
