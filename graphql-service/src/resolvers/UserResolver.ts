@@ -41,7 +41,10 @@ export class UserResolver {
         const postData = data.posts?.map((post) => {
             return {
                 likeCount: post.likeCount,
-                postType: post.postType || undefined
+                commentCount: post.commentCount,
+                mediaURL: post.mediaURL,
+                publishedAt: post.publishedAt,
+                postType: post.postType
             };
         });
 
@@ -49,6 +52,8 @@ export class UserResolver {
             data: {
                 userName: data.userName,
                 fullName: data.fullName,
+                followerCount: data.followerCount,
+                biography: data.biography,
                 posts: {
                     create: postData
                 }
@@ -57,15 +62,14 @@ export class UserResolver {
     }
 
     @Query(() => [User])
-    async getAllUsers(@Ctx() ctx: Context) {
+    async getAllUsers(@Ctx() ctx: Context): Promise<User[]> {
         return ctx.prisma.user.findMany();
     }
 
-
-    @Query((returns) => User, {nullable: true})
-    async getUserByUserName(@Arg('userName') userName: string, @Ctx() ctx: Context) {
+    @Query((returns) => User, { nullable: true })
+    async getUserByUserName(@Arg('userName') userName: string, @Ctx() ctx: Context){
         return ctx.prisma.user
-        .findUnique({
+            .findUnique({
                 where: {
                     userName: userName
                 }
@@ -73,6 +77,4 @@ export class UserResolver {
     }
 
 
-    
-    
 }

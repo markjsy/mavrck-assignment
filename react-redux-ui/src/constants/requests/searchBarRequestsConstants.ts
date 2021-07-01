@@ -1,7 +1,10 @@
+import { User, Post } from "../../requests/requests"
+
 export const GET_ALL_USERS_QUERY = `
     { 
         getAllUsers
-            {
+            {   
+                id
                 userName
                 fullName
                 biography
@@ -19,10 +22,11 @@ export const GET_ALL_USERS_QUERY = `
     }
 `
 
-export const GET_USER_BY_USERNAME_QUERY = (userName: string) => `
+export const GET_USER_BY_USERNAME_QUERY = (userName: string): string => `
     { 
         getUserByUserName(userName: "${userName}")
             {
+                id
                 userName
                 fullName
                 biography
@@ -39,3 +43,35 @@ export const GET_USER_BY_USERNAME_QUERY = (userName: string) => `
             } 
     }
 `
+
+export const ADD_USER_MUTATION = (user: User, posts?: Post[]): string => {
+    const userPosts = user.posts ? user.posts : null
+    const retPosts = posts ? posts : userPosts
+    let mutation = `
+    mutation{
+    addUser(
+        data: {
+          userName: "${user.userName}"
+          fullName: "${user.fullName || null}"
+          biography: "${user.biography || null}"
+          followerCount: ${user.followerCount || null}
+          posts: ${retPosts}
+        }
+      ) {
+        id
+        userName
+        fullName
+        biography
+        followerCount
+        posts {
+          id
+          likeCount
+          commentCount
+          mediaURL
+          publishedAt
+        }
+      }
+    }
+    `
+    return mutation
+}
