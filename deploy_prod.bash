@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Creating ingress just in case it was deleted
+docker network create --ingress --driver overlay ingress || true
+
 # Init swarm if not done already
 docker swarm init || true
 
