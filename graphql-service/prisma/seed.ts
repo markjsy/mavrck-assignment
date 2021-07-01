@@ -3,10 +3,11 @@ import { PrismaClient, Prisma } from '@prisma/client'
 const prisma = new PrismaClient()
 
 const userData: any = [
+ 
   {
     userName: 'Mavrck1',
-    biography: 'Here is the bio of Mavrck1',
     fullName: 'Mav Rck1',
+    biography: 'Here is the bio of Mavrck1',
     followerCount: 100,
     posts: {
       create: [
@@ -40,7 +41,7 @@ const userData: any = [
     userName: 'Mavrck3',
     biography: 'Here is the bio of Mavrck3',
     fullName: 'Mav Rck3',
-    followerCount: 100,
+    followerCount: 1220,
     posts: {
       create: [
         {
