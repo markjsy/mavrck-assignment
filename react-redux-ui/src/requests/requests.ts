@@ -27,7 +27,6 @@ interface GetUserByUserNameResponse {
     getUserByUsername: User
 }
 
-
 export async function getAllUsers(): Promise<GetAllUsersResponse> {
     const response = await GRAPHQL(GET_ALL_USERS_QUERY);
     const data: GetAllUsersResponse = response.getAllUsers
