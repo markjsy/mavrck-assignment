@@ -60,4 +60,19 @@ export class UserResolver {
     async getAllUsers(@Ctx() ctx: Context) {
         return ctx.prisma.user.findMany();
     }
+
+
+    @Query((returns) => User, {nullable: true})
+    async getUserByUserName(@Arg('userName') userName: string, @Ctx() ctx: Context) {
+        return ctx.prisma.user
+        .findUnique({
+                where: {
+                    userName: userName
+                }
+            })
+    }
+
+
+    
+    
 }

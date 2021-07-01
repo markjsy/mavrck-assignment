@@ -13,9 +13,9 @@ async function consume(){
             console.log("The MESSAGE: ", msg.content)
             
             const parsedMsg: any = JSON.parse(msg.content)
-            const username: string = Object.keys(parsedMsg)[0];
-            const usernameProcessed: string = username.substring(1,username.length-1);
-            const userData = await getUserInformation(usernameProcessed)
+            const userName: string = Object.keys(parsedMsg)[0];
+            const userNameProcessed: string = userName.substring(1,userName.length-1);
+            const userData = await getUserInformation(userNameProcessed)
             const userDataParsed = JSON.parse(userData)
 
             console.log("User Information from Instagram: ", userDataParsed)

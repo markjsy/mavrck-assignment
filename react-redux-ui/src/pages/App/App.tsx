@@ -15,7 +15,7 @@ function App() {
 
   function onChange(e: ChangeEvent<HTMLInputElement>) {
     dispatch(searchBarActions.setSearchInput(e.target.value))
-    dispatch(searchBarActions.thunkTest())
+    dispatch(searchBarActions.searchThunk())
   }
 
   function Heading({ title }: { title: string }): ReactElement {

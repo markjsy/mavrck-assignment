@@ -50,36 +50,3 @@ app.use((req, res, next) => {
 
 const httpServer = http.createServer(app);
 httpServer.listen(config.server.port, () => logging.info(NAMESPACE, `Server running on ${config.server.hostname}:${config.server.port}`));
-/*
-app.post('/addUser', async function (req: any, res: any) {
-    console.log(req)
-    // Launching the Puppeteer controlled headless browser and navigate to the Digimon website
-    const text = await getUserInformation(req)
-    res.send(text);
-
-
-    const query = `
-    query {
-        getAllUsers {
-          id
-          userName
-        }
-    }
-    `;
-
-    const result = await fetch('http://:3100/graphql', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            'Accept': 'application/json',
-        },
-        body: JSON.stringify({ query: query })
-    })
-
-    const users = await result.text()
-    console.log(users)
-
-
-});
-
-*/

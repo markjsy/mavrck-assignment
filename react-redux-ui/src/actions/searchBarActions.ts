@@ -1,11 +1,13 @@
 import { searchBarActionConstants } from "../constants/actions/searchBarActionConstants";
-import { DropdownOptions } from "../interfaces/interface";
+import { ApplicationState, DropdownOptions } from "../interfaces/interface";
+import { GET_INSTAGRAM_USER } from "../requests/httpMethods";
+import { getAllUsers, getUserByUserName } from "../requests/requests";
 
 // import { GET_INSTAGRAM_USER } from "../requests/httpMethods";
 export const searchBarActions = {
     setDropdownOptions,
     setSearchInput,
-    thunkTest
+    searchThunk
 }
 
 function setDropdownOptions(options: DropdownOptions[]) {
@@ -22,11 +24,14 @@ function setSearchInput(searchInput: string) {
     }
 }
 
-function thunkTest() {
-    return async (dispatch: any, _getState: any) => {
-        //const _state: ApplicationState = getState();
-        //const userDataResponse = await GET_INSTAGRAM_USER("mavrck")
-        //const data = userDataResponse
+function searchThunk() {
+    return async (dispatch: any, getState: any) => {
+        const state: ApplicationState = getState();
+        const userName: string = state.searchBarReducer.searchInput
+        const userDataResponse = await getUserByUserName(userName)
+        const data = userDataResponse
+        
+        console.log(data)
         //const userInfoSource = await axios.get('https://www.instagram.com/mavrck/channel/__a=1')
         //const jsonObject = userInfoSource.data.match(/<script type="text\/javascript">window\._sharedData = (.*)<\/script>/)[1].slice(0, -1)
         //console.log( JSON.parse(jsonObject)) 
