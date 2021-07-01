@@ -9,13 +9,11 @@ const addUserRabbitMQ = async (req: Request, res: Response, next: NextFunction) 
     try {
         const connection = await amqplib.connect(RABBIT_AMQP_URL);
         const channel = await connection.createChannel();
-        const result = await channel.assertQueue('puppet');
-
+        console.log("Body")
+        console.log(req.body)
         channel.sendToQueue('puppet', Buffer.from(JSON.stringify(req.body)) );
         console.log("Sent to queue: " + Buffer.from(JSON.stringify(req.body)) );
-     
-        connection.close()
-        console.log('Successfuly consumed message');
+        
     } catch (ex) {
         console.error('An error occurred when connecting');
     }
