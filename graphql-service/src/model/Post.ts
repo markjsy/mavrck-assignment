@@ -25,4 +25,7 @@ export class Post {
 
     @Field((type) => User, { nullable: true })
     author?: User | null;
+
+    @Field((type) => Int, { nullable: true })
+    authorId?: number | null;
 }

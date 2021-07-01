@@ -6,20 +6,15 @@ import { RABBIT_AMQP_URL } from '../config/rabbitmq';
 const NAMESPACE = 'Puppet Controller';
 
 const addUserRabbitMQ = async (req: Request, res: Response, next: NextFunction) => {
-    const msg = { number: 99 };
     try {
         const connection = await amqplib.connect(RABBIT_AMQP_URL);
         const channel = await connection.createChannel();
         const result = await channel.assertQueue('puppet');
-        channel.sendToQueue('puppet', Buffer.from(JSON.stringify(msg)) );
-        console.log("Sent to queue: " + Buffer.from(JSON.stringify(msg)) );
+
+        channel.sendToQueue('puppet', Buffer.from(JSON.stringify(req.body)) );
+        console.log("Sent to queue: " + Buffer.from(JSON.stringify(req.body)) );
      
-        /*
-        channel.consume('puppet', (msg: any) => {
-            console.log(msg.content.toString());
-            channel.ack(msg)
-        });
-        */
+        connection.close()
         console.log('Successfuly consumed message');
     } catch (ex) {
         console.error('An error occurred when connecting');

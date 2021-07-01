@@ -13,6 +13,7 @@ async function consume(){
         const result = await channel.assertQueue('puppet');
 
         channel.consume('puppet', (msg: any) => {
+            console.log("I received: ");
             console.log(msg.content.toString());
             channel.ack(msg)
         });
@@ -28,4 +29,4 @@ async function consume(){
 
 consume()
 
-console.log("RUNNING CONSUMER")
+console.log("RUNNING CONSUMER3")
