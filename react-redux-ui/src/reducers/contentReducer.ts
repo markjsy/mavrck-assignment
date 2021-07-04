@@ -6,6 +6,7 @@ const initialState: ContentReducer = {
     biography: 'No biography found',
     followerCount: 0,
     posts: [{
+        mediaCode: 'No media code found',
         mediaURL: 'No media URL found',
         likeCount: 0,
         commentCount: 0,

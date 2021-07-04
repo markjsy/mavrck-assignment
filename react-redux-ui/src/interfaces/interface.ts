@@ -1,12 +1,12 @@
 
 
 export interface User {
-    id?: number,
+    id?: number
     userName?: string
     fullName?: string
     biography?: string
     followerCount?: number
-    retrievedAt?: Date
+    retrievedAt?: string
     posts?: Post[]
 }
 
@@ -16,7 +16,8 @@ export interface Post {
     commentCount?: number
     postType?: string
     mediaURL?: string
-    publishedAt: string;
+    mediaCode?: string
+    publishedAt: string
 }
 
 export interface GetAllUsersResponse {

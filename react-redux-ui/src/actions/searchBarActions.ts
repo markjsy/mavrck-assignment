@@ -1,17 +1,13 @@
 import { searchBarActionConstants } from "../constants/actions/searchBarActionConstants";
 import { contentActions } from "./contentActions"
 import { ApplicationState, DropdownOptions } from "../interfaces/interface";
-import { GET_INSTAGRAM_USER } from "../requests/httpMethods";
-import { addUser, getAllUsers, getUserByUserName} from "../requests/requests";
+import { getUserByUserName, postToPuppet} from "../requests/requests";
 
-// import { GET_INSTAGRAM_USER } from "../requests/httpMethods";
 export const searchBarActions = {
     setDropdownOptions,
     setSearchInput,
     searchThunk
 }
-
-
 
 function setDropdownOptions(options: DropdownOptions[]) {
     return {
@@ -32,6 +28,10 @@ function searchThunk() {
         const state: ApplicationState = getState();
         const userName: string = state.searchBarReducer.searchInput
         const userDataResponse = await getUserByUserName(userName)
+
+        if(userDataResponse === null){
+            postToPuppet(userName)
+        }
         dispatch(contentActions.setContent(userDataResponse))
 
         console.log("userDataResponse", userDataResponse)
