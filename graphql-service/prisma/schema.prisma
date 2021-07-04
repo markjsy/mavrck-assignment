@@ -27,6 +27,7 @@ model Post {
   commentCount Int?
   postType     String?
   mediaURL     String?
+  mediaCode    String?
   author       User?   @relation(fields: [authorId], references: [id])
   authorId     Int?
   publishedAt   DateTime @default(now())

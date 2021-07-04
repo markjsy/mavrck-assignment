@@ -24,6 +24,9 @@ export class PostCreateInput {
 
     @Field({ nullable: true })
     mediaURL: string;
+
+    @Field({ nullable: true})
+    mediaCode: string;
 }
 
 @Resolver(Post)

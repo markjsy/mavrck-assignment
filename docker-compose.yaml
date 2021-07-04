@@ -45,6 +45,8 @@ services:
         environment:
             - QUEUE_NAME=puppet
             - AMQP_HOST=rabbitmq:5672
+            - GRAPHQL_URL=http://rabbitmq:2500/graphql
+            - PUPPET_URL=http://rabbitmq:2000/puppet/user
 
     insta-puppet-consumer-2:
         image: insta-puppet-consumer
@@ -58,6 +60,8 @@ services:
         environment:
             - QUEUE_NAME=puppet
             - AMQP_HOST=rabbitmq:5672
+            - GRAPHQL_URL=http://rabbitmq:2500/graphql
+            - PUPPET_URL=http://rabbitmq:2000/puppet/user
 
     insta-puppet-service:
         image: insta-puppet-service

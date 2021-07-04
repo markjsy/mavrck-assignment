@@ -31,6 +31,7 @@ const userData: any = [
         {
           likeCount: 321,
           commentCount: 1234,
+          mediaCode: 'abc123',
           postType: 'VIDEO',
           mediaURL: 'https://photos.angel.co/startups/i/187199-8e5a4e21af81c9a7daa7ac29bd76baa4-medium_jpg.jpg?buster=1589601706'
         },
@@ -45,6 +46,7 @@ const userData: any = [
     posts: {
       create: [
         {
+          mediaCode: 'abc123',
           likeCount: 321,
           commentCount: 1234,
           postType: 'VIDEO',
