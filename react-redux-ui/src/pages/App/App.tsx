@@ -6,8 +6,14 @@ import { searchBarActions } from '../../actions/searchBarActions';
 import { ApplicationState } from '../../interfaces/interface';
 
 function App() {
+
   const dispatch = useDispatch();
-  const options = useSelector((state: ApplicationState) => state.searchBarReducer.options)
+  let options = useSelector((state: ApplicationState) => state.searchBarReducer.options)
+  let fullName = useSelector((state: ApplicationState) => state.contentReducer.fullName)
+  let biography = useSelector((state: ApplicationState) => state.contentReducer.biography)
+  let followerCount = useSelector((state: ApplicationState) => state.contentReducer.followerCount)
+  let posts = useSelector((state: ApplicationState) => state.contentReducer.posts)
+  let latestPost = posts[0]
 
   useEffect(() => {
     // dispatch(searchBarActions.setDropdownOptions([]))
@@ -22,13 +28,33 @@ function App() {
     return (<div>{title}</div>);
   }
 
+  function Content({ content }: { content: string | number }): ReactElement {
+    return (<div className='content'> {content} </div>)
+  }
+
+  function LatestPostContent ({ content }: { content: string | number | undefined}): ReactElement {
+    return (<div className=''> {content} </div>)
+  }
+
   return (
     <div className='App'>
       <SearchBar onChange={onChange} options={options} />
+
       <Heading title='Name' />
+      <Content content={fullName} />
+
       <Heading title='Biography' />
+      <Content content={biography} />
+
       <Heading title='Follower Count' />
+      <Content content={followerCount} />
+
       <Heading title='Latest Post' />
+      <LatestPostContent content={latestPost.commentCount} />
+      <LatestPostContent content={latestPost.likeCount} />
+      <LatestPostContent content={latestPost.mediaURL} />
+      <LatestPostContent content={latestPost.postType} />
+
     </div>
   );
 }

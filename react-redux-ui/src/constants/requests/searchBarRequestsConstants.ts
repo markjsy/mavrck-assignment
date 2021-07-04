@@ -1,4 +1,4 @@
-import { User, Post } from "../../requests/requests"
+import { User, Post } from "../../interfaces/interface"
 
 export const GET_ALL_USERS_QUERY = `
     { 
@@ -74,7 +74,5 @@ export const ADD_USER_MUTATION = (user: User, posts?: Post[]): string => {
             }
         }
     `
-
-    console.log("The Mutation: ", mutation)
     return mutation
 }

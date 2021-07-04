@@ -1,72 +1,31 @@
 import { ADD_USER_MUTATION, GET_ALL_USERS_QUERY, GET_USER_BY_USERNAME_QUERY } from "../constants/requests/searchBarRequestsConstants";
+import { AddUserResponse, GetAllUsersResponse, GetUserByUserNameResponse, Post, User } from "../interfaces/interface";
 import { GRAPHQL } from "./httpMethods";
 
-export interface User {
-    id?: number,
-    userName?: string
-    fullName?: string
-    biography?: string
-    followerCount?: number
-    retrievedAt?: Date
-    posts?: Post[]
-}
-
-export interface Post {
-    id?: number
-    likeCount?: number
-    commentCount?: number
-    postType?: string
-    mediaURL?: string
-    publishedAt?: Date
-}
-
-/*
-
-export interface PostRequest{
-    likeCount?: number;
-    commentCount?: number;
-    mediaURL?: string;
-    publishedAt?: Date
-}
-
-export interface UserRequest{
-    userName: string;
-    fullName?: string;
-    biography?: string;
-    followerCount?: number;
-    posts: PostRequest[]; 
-}
-
-*/
-
-interface GetAllUsersResponse {
-    getAllUsers: User[]
-}
-
-interface GetUserByUserNameResponse {
-    getUserByUsername: User
-}
-
-interface AddUserResponse {
-    addUser: User
-}
-
-export async function getAllUsers(): Promise<GetAllUsersResponse> {
+export async function getAllUsers() {
     const response = await GRAPHQL(GET_ALL_USERS_QUERY);
     const data: GetAllUsersResponse = response.getAllUsers
     return data;
 }
 
 
-export async function getUserByUserName(userName: string): Promise<GetUserByUserNameResponse> {
+export async function getUserByUserName(userName: string) {
     const response = await GRAPHQL(GET_USER_BY_USERNAME_QUERY(userName));
-    const data: GetUserByUserNameResponse = response.data
-    return data;
+    const respData: GetUserByUserNameResponse = response.data
+    if (respData.getUserByUserName) {
+        respData.getUserByUserName.posts?.sort((a: Post, b: Post) => {
+            return new Date(a.publishedAt).valueOf() - new Date(b.publishedAt).valueOf()
+        })
+        return respData.getUserByUserName;
+    }
+    else {
+        return null;
+    }
 }
 
 
-export async function addUser(user: User, post?: Post[]): Promise<AddUserResponse> {
-    const response = await GRAPHQL(ADD_USER_MUTATION(user,post));
+export async function addUser(user: User, post?: Post[]) {
+    const response = await GRAPHQL(ADD_USER_MUTATION(user, post));
     const data: AddUserResponse = response.data
     return data;
 }
