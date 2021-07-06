@@ -1,6 +1,6 @@
 import amqplib from 'amqplib';
-import { QUEUE_NAME_ADD, RABBIT_AMQP_URL } from '../config/rabbitmq';
-import { addUser, getUserInformation, Post, User } from './puppet';
+import {  QUEUE_NAME_UPDATE, RABBIT_AMQP_URL } from '../config/rabbitmq';
+import {  getUserInformation, Post, updateUser, User } from './puppet';
 
 async function consume() {
     try {
@@ -8,7 +8,9 @@ async function consume() {
         const channel = await connection.createChannel();
 
         // Waits to consume from rabbit message queue
-        channel.consume(QUEUE_NAME_ADD, async (msg: any) => {
+        channel.assertQueue(QUEUE_NAME_UPDATE,{  durable: false });
+
+        channel.consume(QUEUE_NAME_UPDATE, async (msg: any) => {
             const parsedMsg: any = JSON.parse(msg.content)
             const userName: string = Object.keys(parsedMsg)[0];
             const userNameProcessed: string = userName.substring(1, userName.length - 1);
@@ -49,8 +51,10 @@ async function consume() {
                         followerCount: followerCount,
                         posts: postObj
                     }
-                    const addUserResp = await addUser(userObj, postObj)
-                    console.log("addUserResp: ", addUserResp)
+
+                    const updateUserResp = await updateUser(userObj, postObj)
+                    console.log("updateUserResp: ", updateUserResp)
+
                     console.log("userObj: ", userObj)
                     console.log("postObj: ", postObj)
                 }
