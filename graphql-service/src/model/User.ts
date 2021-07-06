@@ -14,13 +14,13 @@ export class User {
     fullName?: string | null;
 
     @Field((type) => String, { nullable: true })
-    biography: string | null;
+    biography?: string | null;
 
     @Field((type) => String, { nullable: true })
-    followerCount: number | null;
+    followerCount?: number | null;
 
     @Field((type) => Date, { nullable: true })
-    retrievedAt: Date | null;
+    retrievedAt?: Date;
 
     @Field((type) => [Post], { nullable: true })
     posts?: [Post] | null;

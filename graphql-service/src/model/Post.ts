@@ -20,6 +20,9 @@ export class Post {
     @Field((type) => String, { nullable: true })
     mediaURL: string | null;
 
+    @Field((type) => String, { nullable: true })
+    mediaCode: string | null;
+
     @Field((type) => Date, { nullable: true })
     publishedAt?: Date | null;
 

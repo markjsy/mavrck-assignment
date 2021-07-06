@@ -1,5 +1,5 @@
 import 'reflect-metadata';
-import { Resolver, Query, Mutation, Arg, Ctx, FieldResolver, Root, Int, InputType, Field } from 'type-graphql';
+import { Resolver, Query, Mutation, Arg, Ctx, FieldResolver, Root, Int, InputType, Field, Subscription, ResolverFilterData, PubSubEngine, PubSub, ID } from 'type-graphql';
 import { Post } from '../model/Post';
 import { User } from '../model/User';
 import { Context } from '../singleton/Context';
@@ -36,10 +36,12 @@ export class UserResolver {
             .posts();
     }
 
-    @Mutation((returns) => User)
-    async addUser(@Arg('data') data: UserCreateInput, @Ctx() ctx: Context): Promise<User> {
-        
-        console.log("IN THE SERVICE data.posts: ", data.posts)
+    @Mutation((returns) => User, { nullable: true })
+    async updateUser(
+        @PubSub() pubSub: PubSubEngine,
+        @Arg('data') data: UserCreateInput,
+        @Ctx() ctx: Context): Promise<User> {
+
         const postData = data.posts?.map((post) => {
             return {
                 likeCount: post.likeCount,
@@ -50,17 +52,53 @@ export class UserResolver {
             };
         });
 
-        return ctx.prisma.user.create({
+        const retVal = ctx.prisma.user.update({
+            where: { userName: data.userName },
             data: {
                 userName: data.userName,
                 fullName: data.fullName,
                 followerCount: data.followerCount,
                 biography: data.biography,
+                retrievedAt: new Date(),
                 posts: {
                     create: postData
                 }
             }
         });
+        await pubSub.publish("NOTIFICATIONS", retVal);
+        return retVal;
+    }
+
+    @Mutation((returns) => User)
+    async addUser(
+        @PubSub() pubSub: PubSubEngine,
+        @Arg('data') data: UserCreateInput,
+        @Ctx() ctx: Context): Promise<User> {
+
+        const postData = data.posts?.map((post) => {
+            return {
+                likeCount: post.likeCount,
+                commentCount: post.commentCount,
+                mediaURL: post.mediaURL,
+                publishedAt: post.publishedAt,
+                postType: post.postType
+            };
+        });
+
+        const retVal = ctx.prisma.user.create({
+            data: {
+                userName: data.userName,
+                fullName: data.fullName,
+                followerCount: data.followerCount,
+                biography: data.biography,
+                retrievedAt: new Date(),
+                posts: {
+                    create: postData
+                }
+            }
+        });
+        await pubSub.publish("NOTIFICATIONS", retVal);
+        return retVal
     }
 
     @Query(() => [User])
@@ -79,4 +117,36 @@ export class UserResolver {
     }
 
 
+    @Subscription({ topics: "NOTIFICATIONS" })
+    normalSubscription(@Root() { id, retrievedAt, userName, fullName, followerCount, biography, posts }: User): User {
+        const postData = posts?.map((post) => {
+            return {
+                likeCount: post.likeCount,
+                commentCount: post.commentCount,
+                publishedAt: post.publishedAt,
+                mediaURL: post.mediaURL,
+                mediaCode: post.mediaCode,
+                postType: post.postType
+            };
+        });
+
+        return {
+            id: id,
+            retrievedAt: retrievedAt,
+            userName: userName,
+            fullName: fullName,
+            followerCount: followerCount,
+            biography: biography,
+            posts: postData
+        }
+    }
+
+    @Mutation(returns => Boolean)
+    async pubSubMutation(
+        @PubSub() pubSub: PubSubEngine,
+        @Arg('data') data: UserCreateInput): Promise<boolean> {
+        const payload: any = { ...data };
+        await pubSub.publish("NOTIFICATIONS", payload);
+        return true;
+    }
 }
