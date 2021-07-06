@@ -1,7 +1,6 @@
 
-## Instructions for local development
+## Instructions for local development (Linux Only)
 
-0) (Windows Only) Install Cygwin and follow the rest of the instructions 
 1) Install docker via https://docs.docker.com/get-docker/
 
 2) Install following images:
