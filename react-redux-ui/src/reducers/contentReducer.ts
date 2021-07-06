@@ -1,5 +1,5 @@
-import { contentActionConstants } from "../constants/actions/contentActionConstants";
-import { ContentActions, ContentReducer } from "../interfaces/interface";
+import { contentActionConstants } from '../constants/actions/contentActionConstants';
+import { ContentActions, ContentReducer } from '../interfaces/interface';
 
 const initialState: ContentReducer = {
     userName: 'No username found',
@@ -7,30 +7,31 @@ const initialState: ContentReducer = {
     fullName: 'No name found',
     biography: 'No biography found',
     followerCount: 0,
-    posts: [{
-        mediaCode: 'No media code found',
-        mediaURL: 'No media URL found',
-        likeCount: 0,
-        commentCount: 0,
-        postType: 'No post type found',
-        publishedAt: ''
-    }]
-}
+    posts: [
+        {
+            mediaCode: 'No media code found',
+            mediaURL: 'No media URL found',
+            likeCount: 0,
+            commentCount: 0,
+            postType: 'No post type found',
+            publishedAt: ''
+        }
+    ]
+};
 
 export function contentReducer(state = initialState, action: ContentActions) {
     switch (action.type) {
         case contentActionConstants.SET_CONTENT:
             if (action.payload === null) {
-                return { ...initialState }
-            }
-            else {
+                return { ...initialState };
+            } else {
                 return { ...state, ...action.payload };
             }
         case contentActionConstants.SET_CONTENT:
             return {
                 ...state,
                 userName: action.payload
-            }
+            };
         default:
             return state;
     }

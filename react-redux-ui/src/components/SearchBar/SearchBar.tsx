@@ -4,27 +4,24 @@ import Autocomplete from '@material-ui/lab/Autocomplete';
 import { SearchBarOptions } from '../../interfaces/interface';
 import './SearchBar.scss';
 //Default props
-const defaultSearchBarProps = {}
+const defaultSearchBarProps = {};
 
 type SearchBarProps = {
-    options: SearchBarOptions[]
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void
-} & typeof defaultSearchBarProps
+    options: SearchBarOptions[];
+    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
+} & typeof defaultSearchBarProps;
 
-function SearchBar({ 
-    options,
-    onChange
-}: SearchBarProps ): ReactElement {
+function SearchBar({ options, onChange }: SearchBarProps): ReactElement {
     return (
         <Autocomplete
             id="text-field-search"
             freeSolo
             options={options}
-            getOptionLabel={(option: SearchBarOptions) => option && option.title ? option.title : ''}
+            getOptionLabel={(option: SearchBarOptions) => (option && option.title ? option.title : '')}
             renderInput={(params) => <TextField {...params} onChange={onChange} label="Search" variant="outlined" />}
         />
-    )
+    );
 }
 
 SearchBar.defaultProps = defaultSearchBarProps;
-export default SearchBar
+export default SearchBar;

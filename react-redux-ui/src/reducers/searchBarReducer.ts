@@ -1,10 +1,10 @@
-import { searchBarActionConstants } from "../constants/actions/searchBarActionConstants";
-import { SearchBarActions, SearchBarReducer } from "../interfaces/interface";
+import { searchBarActionConstants } from '../constants/actions/searchBarActionConstants';
+import { SearchBarActions, SearchBarReducer } from '../interfaces/interface';
 
 const initialState: SearchBarReducer = {
     options: [],
     searchInput: ''
-}
+};
 
 export function searchBarReducer(state = initialState, action: SearchBarActions) {
     switch (action.type) {

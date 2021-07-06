@@ -116,7 +116,6 @@ export class UserResolver {
             })
     }
 
-
     @Subscription({ topics: "NOTIFICATIONS" })
     normalSubscription(@Root() { id, retrievedAt, userName, fullName, followerCount, biography, posts }: User): User {
         const postData = posts?.map((post) => {

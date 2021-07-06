@@ -1,18 +1,16 @@
-import { gql } from "@apollo/client"
-import { User, Post } from "../../interfaces/interface"
+import { gql } from '@apollo/client';
+import { User, Post } from '../../interfaces/interface';
 
 export const GET_USER_SUBSCRIPTION = gql`
-    subscription AllSubs
-    {
-        normalSubscription 
-        {
+    subscription AllSubs {
+        normalSubscription {
             id
             retrievedAt
             userName
             fullName
             followerCount
             biography
-            posts{
+            posts {
                 likeCount
                 commentCount
                 postType
@@ -22,7 +20,7 @@ export const GET_USER_SUBSCRIPTION = gql`
             }
         }
     }
-`
+`;
 
 export const GET_ALL_USERS_QUERY = `
     { 
@@ -44,7 +42,7 @@ export const GET_ALL_USERS_QUERY = `
                 }
             } 
     }
-`
+`;
 
 export const GET_USER_BY_USERNAME_QUERY = (userName: string): string => `
     { 
@@ -66,11 +64,11 @@ export const GET_USER_BY_USERNAME_QUERY = (userName: string): string => `
                 }
             } 
     }
-`
+`;
 
 export const ADD_USER_MUTATION = (user: User, posts?: Post[]): string => {
-    const userPosts = user.posts ? user.posts : null
-    const usedPosts = posts ? posts : userPosts
+    const userPosts = user.posts ? user.posts : null;
+    const usedPosts = posts ? posts : userPosts;
     const parsedPost = JSON.stringify(usedPosts).replace(/"(\w+)":/g, '$1:');
     let mutation = `
         mutation{
@@ -97,6 +95,6 @@ export const ADD_USER_MUTATION = (user: User, posts?: Post[]): string => {
                 }
             }
         }
-    `
-    return mutation
-}
+    `;
+    return mutation;
+};

@@ -1,4 +1,4 @@
-import { GRAPHQL_URL, PUPPET_URL, PUPPET_URL_UPDATE } from "../constants/requests/httpMethodsConstants"
+import { GRAPHQL_URL, PUPPET_URL, PUPPET_URL_UPDATE } from '../constants/requests/httpMethodsConstants';
 
 export function POST_PUPPET(payload: string) {
     return fetch(PUPPET_URL, {
@@ -7,9 +7,8 @@ export function POST_PUPPET(payload: string) {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: JSON.stringify(payload)
-    })
+    });
 }
-
 
 export function UPDATE_PUPPET(payload: string) {
     return fetch(PUPPET_URL_UPDATE, {
@@ -18,7 +17,7 @@ export function UPDATE_PUPPET(payload: string) {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: JSON.stringify(payload)
-    })
+    });
 }
 
 export function GET(url: string) {
@@ -26,13 +25,13 @@ export function GET(url: string) {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json',
+            Accept: 'application/json'
         }
     })
         .then((r: any) => r.json())
         .catch((e) => {
-            console.error("An error has occured: " + e)
-        })
+            console.error('An error has occured: ' + e);
+        });
 }
 
 export function GRAPHQL(query: string) {
@@ -40,12 +39,12 @@ export function GRAPHQL(query: string) {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
-            'Accept': 'application/json',
+            Accept: 'application/json'
         },
         body: JSON.stringify({ query: query })
     })
         .then((r: any) => r.json())
         .catch((e) => {
-            console.error("An error has occured: " + e)
-        })
+            console.error('An error has occured: ' + e);
+        });
 }

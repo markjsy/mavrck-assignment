@@ -1,2 +1,2 @@
-export * from './searchBarActions'
-export * from './contentActions'
+export * from './searchBarActions';
+export * from './contentActions';

@@ -14,43 +14,30 @@ import { GRAPHQL_SUB_URL, GRAPHQL_URL } from './constants/requests/httpMethodsCo
 
 const loggerMiddleware = createLogger();
 
-const store = createStore(
-  rootReducer,
-  applyMiddleware(
-    thunkMiddleware,
-    loggerMiddleware
-  )
-)
-
-
+const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
 
 const link = new WebSocketLink({
-  uri: GRAPHQL_SUB_URL,
-  options: {
-    reconnect: true
-  }
-})
+    uri: GRAPHQL_SUB_URL,
+    options: {
+        reconnect: true
+    }
+});
 
 const client = new ApolloClient({
-  link,
-  uri: GRAPHQL_URL,
-  cache: new InMemoryCache()
-})
-
-
-
-//const client = new ApolloClient({cache, link: wsLink})
+    link,
+    uri: GRAPHQL_URL,
+    cache: new InMemoryCache()
+});
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </ApolloProvider>
-  </React.StrictMode>,
-
-  document.getElementById('root')
+    <React.StrictMode>
+        <ApolloProvider client={client}>
+            <Provider store={store}>
+                <App />
+            </Provider>
+        </ApolloProvider>
+    </React.StrictMode>,
+    document.getElementById('root')
 );
 
 // If you want to start measuring performance in your app, pass a function
