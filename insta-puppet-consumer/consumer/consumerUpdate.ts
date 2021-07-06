@@ -8,9 +8,12 @@ async function consume() {
         const channel = await connection.createChannel();
 
         // Waits to consume from rabbit message queue
+        console.log("OUTSIDE CONSUMER FOR UPDATING!!")
         channel.assertQueue(QUEUE_NAME_UPDATE,{  durable: false });
 
         channel.consume(QUEUE_NAME_UPDATE, async (msg: any) => {
+            console.log("INSIDE CONSUMER FOR UPDATING!!")
+
             const parsedMsg: any = JSON.parse(msg.content)
             const userName: string = Object.keys(parsedMsg)[0];
             const userNameProcessed: string = userName.substring(1, userName.length - 1);

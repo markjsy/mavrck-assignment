@@ -1,10 +1,17 @@
 .App {
     text-align: center;
-    background-color: #ffffff;
+    background-color: white;
     min-height: 100vh;
     padding-top: 3.5em;
 
     .content {
-        padding-bottom: 1em;
+        text-align: left;    
+        padding-bottom:1em;
+    }
+
+    .space-between{
+        padding-top: .5em;
+        padding-bottom: .5em;
     }
 }
+

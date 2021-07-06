@@ -4,6 +4,9 @@ import SearchBar from '../../components/SearchBar/SearchBar';
 import { useDispatch, useSelector } from 'react-redux';
 import { searchBarActions } from '../../actions/searchBarActions';
 import { ApplicationState } from '../../interfaces/interface';
+import { useSubscription } from '@apollo/client';
+import { GET_USER_SUBSCRIPTION } from '../../constants/requests/searchBarRequestsConstants';
+import { Button } from '@material-ui/core';
 
 function App() {
     const dispatch = useDispatch();
@@ -23,40 +26,148 @@ function App() {
         dispatch(searchBarActions.searchThunk());
     }
 
-    function Heading({ title }: { title: string }): ReactElement {
-        return <div>{title}</div>;
-    }
-
-    function Content({ content }: { content: string | number }): ReactElement {
-        return <div className="content"> {content} </div>;
-    }
 
     function LatestPostContent({ content }: { content: string | number | undefined }): ReactElement {
         return <div className=""> {content} </div>;
     }
 
+    function FullName(): ReactElement {
+        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION)
+        console.log("data", data)
+        console.log("error", error)
+        console.log("loading", loading)
+        if (loading === false) {
+            const field = data.normalSubscription.fullName
+            return (<div className="content"><b>Name: </b>{field}</div>)
+        }
+        else {
+            return (<div>No full name found</div>)
+        }
+    }
+
+    function Biography(): ReactElement {
+        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION)
+        console.log("data", data)
+        console.log("error", error)
+        console.log("loading", loading)
+        if (loading === false) {
+            const field = data.normalSubscription.biography
+            return (<div className="content"><b>Biography:</b> {field}</div>)
+        }
+        else {
+            return (<div>No biography found</div>)
+        }
+    }
+
+
+    function FollowerCount(): ReactElement {
+        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION)
+        console.log("data", data)
+        console.log("error", error)
+        console.log("loading", loading)
+        if (loading === false) {
+            const field = data.normalSubscription.followerCount
+            return (<div className="content"><b>Follower Count: </b>{field}</div>)
+        }
+        else {
+            return (<div>No follower count found</div>)
+        }
+    }
+
+    function RetrievedAt(): ReactElement {
+        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION)
+        console.log("data", data)
+        console.log("error", error)
+        console.log("loading", loading)
+        if (loading === false) {
+            const field = data.normalSubscription.retrievedAt
+            return (<div className="content"><b>Last time data was retrieved: </b>{new Date(field).toUTCString()}</div>)
+        }
+        else {
+            return (<div>No retrieved at date found</div>)
+        }
+    }
+
+
+    function PostCommentCount(): ReactElement {
+        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION)
+        console.log("data", data)
+        console.log("error", error)
+        console.log("loading", loading)
+        if (loading === false) {
+            const field = data.normalSubscription.posts[0].commentCount
+            return (<div className="content"><b>Most Recent Post Comment Count: </b>{field}</div>)
+        }
+        else {
+            return (<div>No post comment count found</div>)
+        }
+    }
+
+
+    function PostLikeCount(): ReactElement {
+        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION)
+        console.log("data", data)
+        console.log("error", error)
+        console.log("loading", loading)
+        if (loading === false) {
+            const field = data.normalSubscription.posts[0].likeCount
+            return (<div className="content"><b>Most Recent Post Like Count: </b>{field}</div>)
+        }
+        else {
+            return (<div>No post like count found</div>)
+        }
+    }
+
+    function PostType(): ReactElement {
+        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION)
+        console.log("data", data)
+        console.log("error", error)
+        console.log("loading", loading)
+        if (loading === false) {
+            const field = data.normalSubscription.posts[0].postType
+            return (<div className="content"><b>Most Recent Post Type: </b>{field}</div>)
+        }
+        else {
+            return (<div>No post type found</div>)
+        }
+    }
+
+    function PostMediaURL(): ReactElement {
+        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION)
+        console.log("data", data)
+        console.log("error", error)
+        console.log("loading", loading)
+        if (loading === false) {
+            const field = data.normalSubscription.posts[0].mediaURL
+            return (
+            <div>
+                <div className="content"><b>Most Recent Post URL: </b></div>
+                <div>{field}</div>
+            </div>)
+        }
+        else {
+            return (<div>No post media url found</div>)
+        }
+    }
     return (
         <div className="App">
-            <button onClick={onClick}>Search</button>
+            <Button onClick={onClick} color="primary" variant="contained">Search/Refresh</Button>
+            <div className='space-between'></div>
             <SearchBar onChange={onChange} options={options} />
+            <div className='space-between'></div>
 
-            <Heading title="Name" />
-            <Content content={fullName} />
+            <FullName />
 
-            <Heading title="Biography" />
-            <Content content={biography} />
+            <Biography />
 
-            <Heading title="Follower Count" />
-            <Content content={followerCount} />
+            <FollowerCount />
 
-            <Heading title="Retrieved At" />
-            <Content content={new Date(retrievedAt).toUTCString()} />
+            <RetrievedAt />
 
-            <Heading title="Latest Post" />
-            <LatestPostContent content={latestPost.commentCount} />
-            <LatestPostContent content={latestPost.likeCount} />
-            <LatestPostContent content={latestPost.mediaURL} />
-            <LatestPostContent content={latestPost.postType} />
+            <PostCommentCount/>
+            <PostLikeCount/>
+            <PostType/>
+            <PostMediaURL/>
         </div>
     );
 }

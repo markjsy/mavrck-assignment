@@ -4,11 +4,15 @@ import { addUser, getUserInformation, Post, User } from './puppet';
 
 async function consume() {
     try {
+        
         const connection = await amqplib.connect(RABBIT_AMQP_URL);
         const channel = await connection.createChannel();
 
         // Waits to consume from rabbit message queue
-        channel.consume(QUEUE_NAME_ADD, async (msg: any) => {
+        console.log("OUTSIDE THE CONSUMER")
+
+        channel.consume('puppet', async (msg: any) => {
+            console.log("INSIDE THE CONSUMER")
             const parsedMsg: any = JSON.parse(msg.content)
             const userName: string = Object.keys(parsedMsg)[0];
             const userNameProcessed: string = userName.substring(1, userName.length - 1);
@@ -59,7 +63,7 @@ async function consume() {
             channel.ack(msg)
         });
 
-        console.log('Successfuly consumed message');
+        console.log('Successfuly consumed message1');
     } catch (ex) {
         console.error("Consumer: Error occurred when connecting")
     }

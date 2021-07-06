@@ -12,7 +12,6 @@ const addUserRabbitMQ = async (req: Request, res: Response, next: NextFunction) 
         channel.sendToQueue('puppet', Buffer.from(JSON.stringify(req.body)));
         logging.info("Body of message sent to puppet service: ", JSON.stringify(req.body))
         logging.info(NAMESPACE, "Sent to queue: " + Buffer.from(JSON.stringify(req.body)));
-        connection.close()
     } catch (ex) {
         logging.error(NAMESPACE, 'An error occurred when connecting');
     }
@@ -20,7 +19,6 @@ const addUserRabbitMQ = async (req: Request, res: Response, next: NextFunction) 
         message: 'Successfully added a new user'
     });
 };
-
 const updateUserRabbitMQ = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const connection = await amqplib.connect(RABBIT_AMQP_URL);
@@ -28,7 +26,6 @@ const updateUserRabbitMQ = async (req: Request, res: Response, next: NextFunctio
         channel.sendToQueue('puppetUpdate', Buffer.from(JSON.stringify(req.body)));
         logging.info("Body of message sent to puppet service: ", JSON.stringify(req.body))
         logging.info(NAMESPACE, "Sent to queue: " + Buffer.from(JSON.stringify(req.body)));
-        connection.close()
     } catch (ex) {
         logging.error(NAMESPACE, 'An error occurred when connecting');
     }
@@ -36,7 +33,6 @@ const updateUserRabbitMQ = async (req: Request, res: Response, next: NextFunctio
         message: 'Successfully added a new user'
     });
 };
-
 export default {
     addUserRabbitMQ,
     updateUserRabbitMQ
