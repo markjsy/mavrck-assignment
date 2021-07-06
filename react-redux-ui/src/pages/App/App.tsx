@@ -142,7 +142,7 @@ function App() {
             return (
             <div>
                 <div className="content"><b>Most Recent Post URL: </b></div>
-                <div>{field}</div>
+                <a href={field}>{field}</a>
             </div>)
         }
         else {
