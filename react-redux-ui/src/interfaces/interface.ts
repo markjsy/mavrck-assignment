@@ -63,9 +63,11 @@ export interface ContentActions{
 
 
 export interface ContentReducer{
+    userName: string;
     fullName: string;
     biography: string;
     followerCount: number;
+    retrievedAt: string;
     posts: Post[];
 }
 

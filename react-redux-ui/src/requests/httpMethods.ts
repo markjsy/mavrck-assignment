@@ -1,7 +1,18 @@
-import { GRAPHQL_URL, PUPPET_URL } from "../constants/requests/httpMethodsConstants"
+import { GRAPHQL_URL, PUPPET_URL, PUPPET_URL_UPDATE } from "../constants/requests/httpMethodsConstants"
 
 export function POST_PUPPET(payload: string) {
     return fetch(PUPPET_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+        },
+        body: JSON.stringify(payload)
+    })
+}
+
+
+export function UPDATE_PUPPET(payload: string) {
+    return fetch(PUPPET_URL_UPDATE, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'

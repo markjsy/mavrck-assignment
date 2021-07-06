@@ -1,7 +1,9 @@
 import { contentActionConstants } from "../constants/actions/contentActionConstants";
-import { Actions, ContentActions, ContentReducer } from "../interfaces/interface";
+import { ContentActions, ContentReducer } from "../interfaces/interface";
 
 const initialState: ContentReducer = {
+    userName: 'No username found',
+    retrievedAt: 'No retrieved at date found',
     fullName: 'No name found',
     biography: 'No biography found',
     followerCount: 0,
@@ -23,6 +25,11 @@ export function contentReducer(state = initialState, action: ContentActions) {
             }
             else {
                 return { ...state, ...action.payload };
+            }
+        case contentActionConstants.SET_CONTENT:
+            return {
+                ...state,
+                userName: action.payload
             }
         default:
             return state;

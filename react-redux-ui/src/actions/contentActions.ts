@@ -2,7 +2,7 @@ import { contentActionConstants } from "../constants/actions/contentActionConsta
 
 // import { GET_INSTAGRAM_USER } from "../requests/httpMethods";
 export const contentActions = {
-    setContent
+    setContent,
 }
 
 function setContent(payload: any) {

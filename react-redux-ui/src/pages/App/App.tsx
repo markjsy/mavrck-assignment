@@ -1,4 +1,4 @@
-import { ChangeEvent, ReactElement, useEffect } from 'react';
+import { ChangeEvent, MouseEvent, ReactElement } from 'react';
 import './App.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { useDispatch, useSelector } from 'react-redux';
@@ -9,19 +9,20 @@ function App() {
 
   const dispatch = useDispatch();
   let options = useSelector((state: ApplicationState) => state.searchBarReducer.options)
+  let retrievedAt = useSelector((state: ApplicationState) => state.contentReducer.retrievedAt)
   let fullName = useSelector((state: ApplicationState) => state.contentReducer.fullName)
   let biography = useSelector((state: ApplicationState) => state.contentReducer.biography)
   let followerCount = useSelector((state: ApplicationState) => state.contentReducer.followerCount)
   let posts = useSelector((state: ApplicationState) => state.contentReducer.posts)
   let latestPost = posts[0]
 
-  useEffect(() => {
-    // dispatch(searchBarActions.setDropdownOptions([]))
-  })
-
   function onChange(e: ChangeEvent<HTMLInputElement>) {
     dispatch(searchBarActions.setSearchInput(e.target.value))
+  }
+
+  function onClick(e: MouseEvent<HTMLElement>) {
     dispatch(searchBarActions.searchThunk())
+
   }
 
   function Heading({ title }: { title: string }): ReactElement {
@@ -32,12 +33,13 @@ function App() {
     return (<div className='content'> {content} </div>)
   }
 
-  function LatestPostContent ({ content }: { content: string | number | undefined}): ReactElement {
+  function LatestPostContent({ content }: { content: string | number | undefined }): ReactElement {
     return (<div className=''> {content} </div>)
   }
 
   return (
     <div className='App'>
+      <button onClick={onClick}>Search</button>
       <SearchBar onChange={onChange} options={options} />
 
       <Heading title='Name' />
@@ -48,6 +50,10 @@ function App() {
 
       <Heading title='Follower Count' />
       <Content content={followerCount} />
+
+
+      <Heading title='Retrieved At' />
+      <Content content={new Date(retrievedAt).toUTCString()} />
 
       <Heading title='Latest Post' />
       <LatestPostContent content={latestPost.commentCount} />

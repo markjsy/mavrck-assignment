@@ -1,7 +1,6 @@
 import { searchBarActionConstants } from "../constants/actions/searchBarActionConstants";
-import { contentActions } from "./contentActions"
 import { ApplicationState, DropdownOptions } from "../interfaces/interface";
-import { getUserByUserName, postToPuppet} from "../requests/requests";
+import { getUserByUserName, postToPuppet, updateToPuppet } from "../requests/requests";
 
 export const searchBarActions = {
     setDropdownOptions,
@@ -28,12 +27,15 @@ function searchThunk() {
         const state: ApplicationState = getState();
         const userName: string = state.searchBarReducer.searchInput
         const userDataResponse = await getUserByUserName(userName)
-
-        if(userDataResponse === null){
+        if (userDataResponse === null) {
             postToPuppet(userName)
+            console.log("adding new user")
         }
-        dispatch(contentActions.setContent(userDataResponse))
+        else {
+            updateToPuppet(userName)
+            console.log("updating current user")
 
+        }
         console.log("userDataResponse", userDataResponse)
     };
 }
