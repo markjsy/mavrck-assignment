@@ -1,34 +1,41 @@
 #!/bin/bash
 
-# Killing all relevant ports needed to run
-kill $(sudo lsof -t -i:5432) || true 
-kill $(sudo lsof -t -i:5672) || true 
-kill $(sudo lsof -t -i:2000) || true 
-kill $(sudo lsof -t -i:2500) || true 
-kill $(sudo lsof -t -i:3000) || true 
-kill $(sudo lsof -t -i:4000) || true
-kill $(sudo lsof -t -i:5000) || true 
-kill $(sudo lsof -t -i:6000) || true 
-kill $(sudo lsof -t -i:7000) || true 
+# Killing all relevant ports/processes needed to run
+docker stop $(docker ps -a -q) &&
+docker rm $(docker ps -a -q) &&
+docker volume rm $(docker volume ls -qf dangling=true) &&
+docker network disconnect -f mavrck mavrckdb || true &&
+docker network disconnect -f mavrck rabbitmq || true &&
+sudo service docker restart &&
+sudo -u rabbitmq rabbitmqctl stop || true
 
-# Removing any instances of the network or containers
+# Killing all processes of any needed ports to run locally
+sudo killall -u rabbitmq || true
+sudo kill $(sudo lsof -t -i:5432) || true 
+sudo kill $(sudo lsof -t -i:8080) || true 
+sudo kill $(sudo lsof -t -i:2000) || true 
+sudo kill $(sudo lsof -t -i:2500) || true 
+sudo kill $(sudo lsof -t -i:3000) || true 
+sudo kill $(sudo lsof -t -i:4000) || true
+sudo kill $(sudo lsof -t -i:5000) || true 
+sudo kill $(sudo lsof -t -i:6000) || true 
+sudo kill $(sudo lsof -t -i:7000) || true 
+
+# Removing any previous instances of the network or containers
+docker network rm mavrck || true
 docker network create mavrck || true
 docker stop mavrckdb || true 
 docker rm mavrckdb  || true 
 docker stop rabbitmq || true
-docker rm rabbitmq || true  
-
-# Starting new containers
 docker run --name mavrckdb --network mavrck -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres 
-docker run -d --hostname rabbitmq --network mavrck --name rabbitmq  -p 8080:15672 -p 5672:5672 rabbitmq:3-management
-
+docker run -d --hostname rabbitmq --network mavrck --name rabbitmq  -p 5950:5950 rabbitmq
 
 # Waiting for db and queue to fully start
 DOCKER_DB="mavrckdb" 
-timeout 90s bash -c "until docker exec $DOCKER_DB pg_isready ; do sleep 5 ; done"
+timeout 300s bash -c "until docker exec $DOCKER_DB pg_isready ; do sleep 5 ; done"
 
 DOCKER_QUEUE="rabbitmq" 
-timeout 90s bash -c "until docker exec $DOCKER_QUEUE rabbitmq-diagnostics check_running ; do sleep 5 ; done"
+timeout 300s bash -c "until docker exec $DOCKER_QUEUE rabbitmq-diagnostics check_running ; do sleep 5 ; done"
 
 # Performing prisma migration
 cd graphql-service &&

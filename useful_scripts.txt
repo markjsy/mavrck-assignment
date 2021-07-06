@@ -9,7 +9,7 @@
     docker stop insta-puppet-consumer  || true &&
     docker rm rinsta-puppet-consumer  || true && 
     kill $(sudo lsof -t -i:6000) || true && 
-    docker run -it --rm --network mavrck --name insta-puppet-consumer -p 6000:6000 -e QUEUE_NAME='puppet' -e AMQP_HOST='172.18.0.2:5672' insta-puppet-consumer
+    docker run -it --rm --network mavrck --name insta-puppet-consumer -p 6000:6000 -e QUEUE_NAME_ADD='puppet' -e AMQP_HOST='172.18.0.2:5672' insta-puppet-consumer
 
 
 # start up rabbit queue

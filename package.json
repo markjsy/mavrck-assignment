@@ -13,8 +13,8 @@
         
         "ips": "cd insta-puppet-service && npm run dev",
         "react-redux-ui": "cd react-redux-ui && npm run start",
-        "install-all": "concurrently \"npm run graphql-install\" \"npm run ipc-install\" \"npm run ips-install\" \"npm run react-redux-ui-install\" ",
-        "start-all": "concurrently \"npm run graphql\" \"npm run ipc1\" \"npm run ipc2\" \"npm run ips\" \"npm run react-redux-ui\" "
+        "install-all": "concurrently \"npm run graphql-install\" \"npm run ipc-install\" \"npm run ips-install\" \"npm run react-redux-ui-install\" \"npm install\" ",
+        "start-all": "concurrently \"npm run graphql\" \"npm run ipc1\" \"npm run ipc2\" \"npm run ips\" \"npm run react-redux-ui\""
     },
     "devDependencies": {},
     "dependencies": {

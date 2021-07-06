@@ -43,10 +43,13 @@ services:
             - rabbitmq
             - graphql-service
         environment:
-            - QUEUE_NAME=puppet
+            - QUEUE_NAME_ADD=puppet
+            - QUEUE_NAME_UPDATE=puppetUpdate
             - AMQP_HOST=rabbitmq:5672
             - GRAPHQL_URL=http://rabbitmq:2500/graphql
+            - GRAPHQL_SUB_URL=ws://rabbitmq:2500/graphql
             - PUPPET_URL=http://rabbitmq:2000/puppet/user
+            - PUPPET_URL_UPDATE=http://rabbitmq:2000/puppet/userUpdate
 
     insta-puppet-consumer-2:
         image: insta-puppet-consumer
@@ -58,10 +61,13 @@ services:
             - rabbitmq
             - graphql-service
         environment:
-            - QUEUE_NAME=puppet
+            - QUEUE_NAME_ADD=puppet
+            - QUEUE_NAME_UPDATE=puppetUpdate
             - AMQP_HOST=rabbitmq:5672
             - GRAPHQL_URL=http://rabbitmq:2500/graphql
+            - GRAPHQL_SUB_URL=ws://rabbitmq:2500/graphql
             - PUPPET_URL=http://rabbitmq:2000/puppet/user
+            - PUPPET_URL_UPDATE=http://rabbitmq:2000/puppet/userUpdate
 
     insta-puppet-service:
         image: insta-puppet-service
@@ -70,7 +76,8 @@ services:
         links:
             - rabbitmq
         environment:
-            - QUEUE_NAME=puppet
+            - QUEUE_NAME_ADD=puppet
+            - QUEUE_NAME_UPDATE=puppetUpdate
             - AMQP_HOST=rabbitmq:5672
 
     react-redux-ui:
@@ -81,4 +88,7 @@ services:
             - 5000:5000
         environment:
             - GRAPHQL_URL=http://rabbitmq:2500/graphql
+            - GRAPHQL_SUB_URL=ws://rabbitmq:2500/graphql
             - PUPPET_URL=http://rabbitmq:2000/puppet/user
+            - PUPPET_URL_UPDATE=http://rabbitmq:2000/puppet/userUpdate
+
