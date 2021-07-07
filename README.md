@@ -4,9 +4,9 @@
 1) Install docker via https://docs.docker.com/get-docker/
 
 2) Install following images:
-    docker pull postgres
-    docker pull node
-    docker pull rabbitmq
+    * docker pull postgres
+    * docker pull node
+    * docker pull rabbitmq
 
 3) Clone/Download this project
 
