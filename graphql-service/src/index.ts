@@ -23,7 +23,7 @@ async function app() {
     });
 
     server.listen({ port: PORT }).then(({ url }) => {
-        console.log(`🚀 Server ready at ${url}/graphql`);
+        console.log(`🚀 Server ready at ${url}graphql`);
     });
 }
 

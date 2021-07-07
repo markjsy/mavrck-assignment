@@ -64,7 +64,9 @@ async function consume() {
 
         console.log('Successfuly consumed message');
     } catch (ex) {
-        console.error("Consumer: Error occurred when connecting")
+        console.error("Consumer Update: Error occurred when connecting")
+        console.error("Error connecting to:", RABBIT_AMQP_URL)
+
     }
 }
 consume()
