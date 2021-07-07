@@ -9,10 +9,7 @@ async function consume() {
         const channel = await connection.createChannel();
 
         // Waits to consume from rabbit message queue
-        console.log("OUTSIDE THE CONSUMER")
-
-        channel.consume('puppet', async (msg: any) => {
-            console.log("INSIDE THE CONSUMER")
+        channel.consume(QUEUE_NAME_ADD, async (msg: any) => {
             const parsedMsg: any = JSON.parse(msg.content)
             const userName: string = Object.keys(parsedMsg)[0];
             const userNameProcessed: string = userName.substring(1, userName.length - 1);
@@ -63,7 +60,7 @@ async function consume() {
             channel.ack(msg)
         });
 
-        console.log('Successfuly consumed message1');
+        console.log('Successfuly consumed message');
     } catch (ex) {
         console.error("Consumer: Error occurred when connecting")
     }

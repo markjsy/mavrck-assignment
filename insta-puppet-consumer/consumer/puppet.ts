@@ -1,5 +1,5 @@
 import puppeteer = require('puppeteer');
-import * as fetch from 'node-fetch';
+import fetch from 'node-fetch';
 
 export const GRAPHQL_URL = process.env.GRAPHQL_URL ? 
 process.env.GRAPHQL_URL:'http://localhost:2500/graphql'
@@ -92,7 +92,6 @@ const UPDATE_USER_MUTATION = (user: User, posts?: Post[]): string => {
 }
 
 export function GRAPHQL(query: string) {
-    console.log("GRAPHQL_URL: ", GRAPHQL_URL)
     return fetch(GRAPHQL_URL, {
         method: 'POST',
         headers: {
