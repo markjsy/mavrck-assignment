@@ -21,12 +21,14 @@ sudo kill $(sudo lsof -t -i:5000) || true
 sudo kill $(sudo lsof -t -i:6000) || true 
 sudo kill $(sudo lsof -t -i:7000) || true 
 
-# Removing any previous instances of the network or containers
+# Removing any previous instances of the network docker network or containers
 docker network rm mavrck || true
 docker network create mavrck || true
 docker stop mavrckdb || true 
 docker rm mavrckdb  || true 
 docker stop rabbitmq || true
+
+# Starting up new docker containers
 docker run --name mavrckdb --network mavrck -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres 
 docker run -d --hostname rabbitmq --network mavrck --name rabbitmq  -p 5950:5950 rabbitmq
 
@@ -44,4 +46,6 @@ npx prisma db seed --preview-feature &&
 cd ..
 
 # Starting all projects
+npm install
+npm run install-all
 npm run start-all 
