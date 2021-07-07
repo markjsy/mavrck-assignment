@@ -10,6 +10,6 @@ RUN chmod a+rx setup.bash
 RUN npm install
 RUN npm run build
 
-EXPOSE 1000
+EXPOSE 2500
 
 CMD  ["/app/setup.bash" ]

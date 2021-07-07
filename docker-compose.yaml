@@ -1,16 +1,14 @@
 version: '3'
 services:
     rabbitmq:
-        image: rabbitmq:3-management
+        image: rabbitmq
         healthcheck:
             test: rabbitmq-diagnostics -q ping
             interval: 30s
             timeout: 30s
             retries: 7
         ports:
-            - 8080:8080
             - 5672:5672
-            - 15672:15672
         environment:
             - NONE=NONE
 

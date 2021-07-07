@@ -12,9 +12,11 @@
 
 ### Frontend
 * React with Hooks + Redux
+* Websockets
 
 ### Backend
 * ORM GraphQL
+* Websockets
 
 ### Other
 * Puppeteer
@@ -22,7 +24,6 @@
 * Code branches
 * Linting
 
-  
 # Tech Stack
 
 ### Database
@@ -37,5 +38,6 @@
 * Docker
 
 ### Other
+* Prisma
 * Apollo Server
 * RabbitMQ
