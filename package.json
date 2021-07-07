@@ -1,9 +1,9 @@
 {
     "scripts": {
-        "graphql-install": "cd graphql-service && npm install --unsafe-perm=true --allow-root",
-        "ipc-install": "cd insta-puppet-consumer && npm install --unsafe-perm=true --allow-root",
-        "ips-install": "cd insta-puppet-service && npm install --unsafe-perm=true --allow-root",
-        "react-redux-ui-install": "cd react-redux-ui && npm install --unsafe-perm=true --allow-root",
+        "graphql-install": "cd graphql-service && npm install",
+        "ipc-install": "cd insta-puppet-consumer && npm install",
+        "ips-install": "cd insta-puppet-service && npm install",
+        "react-redux-ui-install": "cd react-redux-ui && npm install",
         "graphql": "cd graphql-service && npm run dev",
         "ipc1": "cd insta-puppet-consumer && npm run dev1",
         "ipc2": "cd insta-puppet-consumer && npm run dev2",
