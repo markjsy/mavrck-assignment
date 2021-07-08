@@ -1,3 +1,5 @@
+## Demo hosted on
+http://35.184.121.149:3000/
 
 ## Instructions for local development (Linux Only)
 
