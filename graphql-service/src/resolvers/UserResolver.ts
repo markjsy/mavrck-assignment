@@ -120,6 +120,7 @@ export class UserResolver {
     normalSubscription(@Root() { id, retrievedAt, userName, fullName, followerCount, biography, posts }: User): User {
         const postData = posts?.map((post) => {
             return {
+                id: post.id,
                 likeCount: post.likeCount,
                 commentCount: post.commentCount,
                 publishedAt: post.publishedAt,

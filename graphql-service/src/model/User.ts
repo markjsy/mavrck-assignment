@@ -22,6 +22,6 @@ export class User {
     @Field((type) => Date, { nullable: true })
     retrievedAt?: Date;
 
-    @Field((type) => [Post], { nullable: true })
-    posts?: [Post] | null;
+    @Field((type) => [Post],{ nullable: true })
+    posts?: Post[];
 }
