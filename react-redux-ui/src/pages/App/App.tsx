@@ -11,12 +11,7 @@ import { Button } from '@material-ui/core';
 function App() {
     const dispatch = useDispatch();
     let options = useSelector((state: ApplicationState) => state.searchBarReducer.options);
-    let retrievedAt = useSelector((state: ApplicationState) => state.contentReducer.retrievedAt);
-    let fullName = useSelector((state: ApplicationState) => state.contentReducer.fullName);
-    let biography = useSelector((state: ApplicationState) => state.contentReducer.biography);
-    let followerCount = useSelector((state: ApplicationState) => state.contentReducer.followerCount);
     let posts = useSelector((state: ApplicationState) => state.contentReducer.posts);
-    let latestPost = posts[0];
 
     function onChange(e: ChangeEvent<HTMLInputElement>) {
         dispatch(searchBarActions.setSearchInput(e.target.value));
@@ -24,11 +19,6 @@ function App() {
 
     function onClick(e: MouseEvent<HTMLElement>) {
         dispatch(searchBarActions.searchThunk());
-    }
-
-
-    function LatestPostContent({ content }: { content: string | number | undefined }): ReactElement {
-        return <div className=""> {content} </div>;
     }
 
     function FullName(): ReactElement {
@@ -59,7 +49,6 @@ function App() {
         }
     }
 
-
     function FollowerCount(): ReactElement {
         let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION)
         console.log("data", data)
@@ -88,7 +77,6 @@ function App() {
         }
     }
 
-
     function PostCommentCount(): ReactElement {
         let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION)
         console.log("data", data)
@@ -102,7 +90,6 @@ function App() {
             return (<div>No post comment count found</div>)
         }
     }
-
 
     function PostLikeCount(): ReactElement {
         let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION)
@@ -149,21 +136,17 @@ function App() {
             return (<div>No post media url found</div>)
         }
     }
+    
     return (
         <div className="App">
             <Button onClick={onClick} color="primary" variant="contained">Search/Refresh</Button>
             <div className='space-between'></div>
             <SearchBar onChange={onChange} options={options} />
             <div className='space-between'></div>
-
             <FullName />
-
             <Biography />
-
             <FollowerCount />
-
             <RetrievedAt />
-
             <PostCommentCount/>
             <PostLikeCount/>
             <PostType/>

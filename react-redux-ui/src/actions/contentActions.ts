@@ -1,6 +1,5 @@
 import { contentActionConstants } from '../constants/actions/contentActionConstants';
 
-// import { GET_INSTAGRAM_USER } from "../requests/httpMethods";
 export const contentActions = {
     setContent
 };

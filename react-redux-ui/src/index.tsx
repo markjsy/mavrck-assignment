@@ -10,14 +10,13 @@ import rootReducer from './reducers';
 import { createLogger } from 'redux-logger';
 import { ApolloClient, InMemoryCache, ApolloProvider } from '@apollo/client';
 import { WebSocketLink } from '@apollo/client/link/ws';
-import { GRAPHQL_SUB_URL, GRAPHQL_URL } from './constants/requests/httpMethodsConstants';
-
+import {CONFIG} from '../../all-configs/config'
 const loggerMiddleware = createLogger();
 
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
 
 const link = new WebSocketLink({
-    uri: GRAPHQL_SUB_URL,
+    uri: CONFIG.REACT_REDUX_UI.GRAPHQL_SUB_URL,
     options: {
         reconnect: true
     }
@@ -25,7 +24,7 @@ const link = new WebSocketLink({
 
 const client = new ApolloClient({
     link,
-    uri: GRAPHQL_URL,
+    uri: CONFIG.REACT_REDUX_UI.GRAPHQL_SUB_URL,
     cache: new InMemoryCache()
 });
 

@@ -1,23 +1,29 @@
-import { GRAPHQL_URL, PUPPET_URL, PUPPET_URL_UPDATE } from '../constants/requests/httpMethodsConstants';
+import { CONFIG } from '../../../all-configs/config'
 
 export function POST_PUPPET(payload: string) {
-    return fetch(PUPPET_URL, {
+    return fetch(CONFIG.REACT_REDUX_UI.PUPPET_URL_ADD, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: JSON.stringify(payload)
-    });
+    })
+        .catch((e) => {
+            console.error('An error has occured: ' + e);
+        });
 }
 
 export function UPDATE_PUPPET(payload: string) {
-    return fetch(PUPPET_URL_UPDATE, {
+    return fetch(CONFIG.REACT_REDUX_UI.PUPPET_URL_UPDATE, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: JSON.stringify(payload)
-    });
+    })
+        .catch((e) => {
+            console.error('An error has occured: ' + e);
+        });
 }
 
 export function GET(url: string) {
@@ -35,7 +41,7 @@ export function GET(url: string) {
 }
 
 export function GRAPHQL(query: string) {
-    return fetch(GRAPHQL_URL, {
+    return fetch(CONFIG.REACT_REDUX_UI.GRAPHQL_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
