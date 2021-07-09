@@ -1,15 +1,15 @@
 import amqplib from 'amqplib';
-import {  QUEUE_NAME_UPDATE, RABBIT_AMQP_URL } from '../config/rabbitmq';
 import {  getUserInformation, Post, updateUser, User } from './puppet';
+import {CONFIG} from '../../all-configs/config'
 
 async function consume() {
     try {
-        const connection = await amqplib.connect(RABBIT_AMQP_URL);
+        const connection = await amqplib.connect(CONFIG.INSTA_PUPPET_CONSUMER.RABBIT_AMQP_URL);
         const channel = await connection.createChannel();
 
         // Waits to consume from rabbit message queue
-        channel.assertQueue(QUEUE_NAME_UPDATE,{  durable: false });
-        channel.consume(QUEUE_NAME_UPDATE, async (msg: any) => {
+        channel.assertQueue(CONFIG.INSTA_PUPPET_CONSUMER.QUEUE_NAME_UPDATE,{  durable: false });
+        channel.consume(CONFIG.INSTA_PUPPET_CONSUMER.QUEUE_NAME_UPDATE, async (msg: any) => {
             const parsedMsg: any = JSON.parse(msg.content)
             const userName: string = Object.keys(parsedMsg)[0];
             const userNameProcessed: string = userName.substring(1, userName.length - 1);
@@ -65,7 +65,7 @@ async function consume() {
         console.log('Successfuly consumed message');
     } catch (ex) {
         console.error("Consumer Update: Error occurred when connecting")
-        console.error("Error connecting to:", RABBIT_AMQP_URL)
+        console.error("Error connecting to AMQP:", CONFIG.INSTA_PUPPET_CONSUMER.RABBIT_AMQP_URL)
 
     }
 }

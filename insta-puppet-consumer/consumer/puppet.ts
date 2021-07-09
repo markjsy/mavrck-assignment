@@ -1,8 +1,6 @@
 import puppeteer = require('puppeteer');
 import fetch from 'node-fetch';
-
-export const GRAPHQL_URL = process.env.GRAPHQL_URL ? 
-process.env.GRAPHQL_URL:'http://localhost:2500/graphql'
+import {CONFIG} from '../../all-configs/config'
 
 export interface User {
     id?: number
@@ -92,7 +90,7 @@ const UPDATE_USER_MUTATION = (user: User, posts?: Post[]): string => {
 }
 
 export function GRAPHQL(query: string) {
-    return fetch(GRAPHQL_URL, {
+    return fetch(CONFIG.INSTA_PUPPET_CONSUMER.GRAPHQL_URL, {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
