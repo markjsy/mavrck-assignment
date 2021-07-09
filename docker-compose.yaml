@@ -43,7 +43,7 @@ services:
         environment:
             - QUEUE_NAME_ADD=puppet
             - QUEUE_NAME_UPDATE=puppetUpdate
-            - AMQP_HOST=amqp://rabbitmq:5672
+            - AMQP_HOST=amqp://guest:guest@rabbitmq:5672/
             - GRAPHQL_URL=http://rabbitmq:2500/graphql
             - GRAPHQL_SUB_URL=ws://rabbitmq:2500/graphql
             - PUPPET_URL=http://rabbitmq:2000/puppet/user
@@ -61,7 +61,7 @@ services:
         environment:
             - QUEUE_NAME_ADD=puppet
             - QUEUE_NAME_UPDATE=puppetUpdate
-            - AMQP_HOST=amqp://rabbitmq:5672
+            - AMQP_HOST=amqp://guest:guest@rabbitmq:5672/
             - GRAPHQL_URL=http://rabbitmq:2500/graphql
             - GRAPHQL_SUB_URL=ws://rabbitmq:2500/graphql
             - PUPPET_URL=http://rabbitmq:2000/puppet/user
@@ -76,7 +76,7 @@ services:
         environment:
             - QUEUE_NAME_ADD=puppet
             - QUEUE_NAME_UPDATE=puppetUpdate
-            - AMQP_HOST=amqp://rabbitmq:5672
+            - AMQP_HOST=amqp://guest:guest@rabbitmq:5672/
 
     react-redux-ui:
         image: react-redux-ui

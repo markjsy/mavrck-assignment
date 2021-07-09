@@ -30,7 +30,7 @@ docker stop rabbitmq || true
 
 # Starting up new docker containers
 docker run --name mavrckdb --network mavrck -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres 
-docker run -d --hostname rabbitmq --network mavrck --name rabbitmq  -p 5950:5950 -p 5672:5672 rabbitmq
+docker run -d --hostname rabbitmq --network mavrck --name rabbitmq -p 15672:15672 -p 5950:5950 -p 5672:5672 rabbitmq
 
 # Waiting for db and queue to fully start
 DOCKER_DB="mavrckdb" 
@@ -43,9 +43,7 @@ timeout 300s bash -c "until docker exec $DOCKER_QUEUE rabbitmq-diagnostics check
 cd graphql-service &&
 npx prisma migrate dev &&
 npx prisma db seed --preview-feature &&
-cd ..
+cd .. &&
 
 # Starting all projects
-npm install
-npm run install-all
 npm run start-all 
