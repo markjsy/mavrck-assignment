@@ -1,4 +1,4 @@
-import { CONFIG } from '../../../all-configs/config'
+import { CONFIG } from '../all-configs/config'
 
 export function POST_PUPPET(payload: string) {
     return fetch(CONFIG.REACT_REDUX_UI.PUPPET_URL_ADD, {
