@@ -8,8 +8,8 @@
   "license": "ISC",
   "scripts": {
     "start": "npx ts-node consumer/consumer.ts",
-    "dev1": "ts-node-dev --no-notify --respawn --transpile-only consumer/consumer.ts",
-    "dev2": "ts-node-dev --no-notify --respawn --transpile-only consumer/consumerUpdate.ts"
+    "dev1": "ts-node-dev --no-notify --respawn --transpile-only src/consumer/consumer.ts",
+    "dev2": "ts-node-dev --no-notify --respawn --transpile-only src/consumer/consumerUpdate.ts"
   },
   "dependencies": {
     "@apollo/client": "^3.3.20",

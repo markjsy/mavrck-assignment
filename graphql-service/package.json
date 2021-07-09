@@ -7,17 +7,20 @@
     "build": "rm -rf build/ && prettier --write src/ && tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "npx ts-node src/index.ts",
-    "dev": "ts-node-dev --no-notify --respawn --transpile-only src/index.ts"
+    "dev": "ts-node-dev --trace-warnings --no-notify --respawn --transpile-only src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@prisma/client": "^2.25.0",
     "apollo-server": "2.25.2",
     "apollo-server-express": "^2.25.2",
     "class-validator": "0.13.1",
     "eslint": "^7.30.0",
     "graphql": "^15.5.1",
+    "graphql-amqp-subscriptions": "^1.2.0",
+    "graphql-rabbitmq-subscriptions": "^1.1.0",
     "graphql-scalars": "1.10.0",
     "npx": "^10.2.2",
     "prettier": "^2.3.2",
@@ -30,7 +33,6 @@
     "typescript": "4.3.4"
   },
   "devDependencies": {
-    "@prisma/client": "2.25.0",
     "@types/async-retry": "^1.4.2",
     "@types/graphql": "14.5.0",
     "@types/lru-cache": "^5.1.0",
