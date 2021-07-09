@@ -1,7 +1,7 @@
 import express = require('express');
 import http = require('http');
-import logging from './config/logging';
-import {CONFIG} from '../../all-configs/config'
+import logging from './all-configs/logging';
+import {CONFIG} from './all-configs/config'
 
 const sample = require('./routes/sampleRoute');
 const puppet = require('./routes/puppetRoute');
@@ -46,4 +46,4 @@ app.use((req, res, next) => {
 });
 
 const httpServer = http.createServer(app);
-httpServer.listen(CONFIG.INSTA_PUPPET_SERVICE.PORT, () => logging.info(NAMESPACE, `Server running on ${CONFIG.INSTA_PUPPET_SERVICE.HOSTNAME}:${CONFIG.INSTA_PUPPET_SERVICE}`));
+httpServer.listen(CONFIG.INSTA_PUPPET_SERVICE.IPS_PORT, () => logging.info(NAMESPACE, `Server running on ${CONFIG.INSTA_PUPPET_SERVICE.HOSTNAME}:${CONFIG.INSTA_PUPPET_SERVICE.IPS_PORT}`));
