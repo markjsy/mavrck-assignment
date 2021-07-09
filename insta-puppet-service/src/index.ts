@@ -1,16 +1,13 @@
-import { Application, Request, Response, NextFunction, Router } from 'express';
 import express = require('express');
 import http = require('http');
-import bodyParser = require('body-parser');
 import logging from './config/logging';
-import config from './config/config';
+import {CONFIG} from '../../all-configs/config'
 
 const sample = require('./routes/sampleRoute');
 const puppet = require('./routes/puppetRoute');
 
 const NAMESPACE = 'Server';
 const app = express();
-let router = express.Router();
 
 app.use((req, res, next) => {
     logging.info(NAMESPACE, `METHOD - [${req.method}], URL - [${req.url}], IP[${req.socket.remoteAddress}]`);
@@ -49,4 +46,4 @@ app.use((req, res, next) => {
 });
 
 const httpServer = http.createServer(app);
-httpServer.listen(config.server.port, () => logging.info(NAMESPACE, `Server running on ${config.server.hostname}:${config.server.port}`));
+httpServer.listen(CONFIG.INSTA_PUPPET_SERVICE.PORT, () => logging.info(NAMESPACE, `Server running on ${CONFIG.INSTA_PUPPET_SERVICE.HOSTNAME}:${CONFIG.INSTA_PUPPET_SERVICE}`));
