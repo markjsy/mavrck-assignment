@@ -1,6 +1,3 @@
-## Demo hosted on
-http://35.184.121.149:3000/
-
 ## Instructions for local development (Linux Only)
 
 1) Install docker via https://docs.docker.com/get-docker/
