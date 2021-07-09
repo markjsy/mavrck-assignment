@@ -17,6 +17,7 @@ CREATE TABLE "Post" (
     "commentCount" INTEGER,
     "postType" TEXT,
     "mediaURL" TEXT,
+    "mediaCode" TEXT,
     "authorId" INTEGER,
     "publishedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
