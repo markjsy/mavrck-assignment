@@ -6,10 +6,9 @@ import { ApolloServer } from 'apollo-server';
 import { DateTimeResolver } from 'graphql-scalars';
 import { context } from './singleton/Context';
 import { GraphQLScalarType } from 'graphql';
-import {CONFIG} from '../../all-configs/config'
+import {CONFIG} from './all-configs/config'
 
 async function app() {
-    const PORT = CONFIG.GRAPHQL.PORT;
     const schema = await tq.buildSchema({
         resolvers: [PostResolver, UserResolver],
         scalarsMap: [{ type: GraphQLScalarType, scalar: DateTimeResolver }]
@@ -22,7 +21,7 @@ async function app() {
         cors: true
     });
 
-    server.listen({ port: PORT }).then(({ url }) => {
+    server.listen({ port: CONFIG.GRAPHQL.GRAPHQL_PORT }).then(({ url }) => {
         console.log(`🚀 Server ready at ${url}graphql`);
     });
 }

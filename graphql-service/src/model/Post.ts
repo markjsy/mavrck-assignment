@@ -1,4 +1,3 @@
-import { DateTime } from 'graphql-scalars/typeDefs';
 import 'reflect-metadata';
 import { ObjectType, Field, ID, Int } from 'type-graphql';
 import { User } from './User';
