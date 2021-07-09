@@ -1,13 +1,12 @@
-import { Application, Request, Response, NextFunction, Router } from 'express';
+import { Request, Response, NextFunction } from 'express';
 import logging from '../config/logging';
 import amqplib from 'amqplib';
-import { RABBIT_AMQP_URL } from '../config/rabbitmq';
+import {CONFIG} from '../../../all-configs/config'
 
 const NAMESPACE = 'Puppet Controller';
-
 const addUserRabbitMQ = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const connection = await amqplib.connect(RABBIT_AMQP_URL);
+        const connection = await amqplib.connect(CONFIG.INSTA_PUPPET_SERVICE.RABBIT_AMQP_URL);
         const channel = await connection.createChannel();
         channel.sendToQueue('puppet', Buffer.from(JSON.stringify(req.body)));
         logging.info("Body of message sent to puppet service: ", JSON.stringify(req.body))
@@ -19,9 +18,10 @@ const addUserRabbitMQ = async (req: Request, res: Response, next: NextFunction) 
         message: 'Successfully added a new user'
     });
 };
+
 const updateUserRabbitMQ = async (req: Request, res: Response, next: NextFunction) => {
     try {
-        const connection = await amqplib.connect(RABBIT_AMQP_URL);
+        const connection = await amqplib.connect(CONFIG.INSTA_PUPPET_SERVICE.RABBIT_AMQP_URL));
         const channel = await connection.createChannel();
         channel.sendToQueue('puppetUpdate', Buffer.from(JSON.stringify(req.body)));
         logging.info("Body of message sent to puppet service: ", JSON.stringify(req.body))
