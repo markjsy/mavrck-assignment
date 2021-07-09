@@ -1,6 +1,6 @@
 {
   "include": [
-    "consumer/**/*"
+    "src/**/*"
   ],
   "compilerOptions": {
     /* Basic Options */
