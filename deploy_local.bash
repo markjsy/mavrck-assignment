@@ -1,11 +1,11 @@
 #!/bin/bash
 
 # Killing all relevant ports/processes needed to run
-docker stop $(docker ps -a -q) &&
-docker rm $(docker ps -a -q) &&
-docker volume rm $(docker volume ls -qf dangling=true) &&
-docker network disconnect -f mavrck mavrckdb || true &&
-docker network disconnect -f mavrck rabbitmq || true &&
+sudo docker stop $(docker ps -a -q) &&
+sudo docker rm $(docker ps -a -q) &&
+sudo docker volume rm $(docker volume ls -qf dangling=true) &&
+sudo docker network disconnect -f mavrck mavrckdb || true &&
+sudo docker network disconnect -f mavrck rabbitmq || true &&
 sudo service docker restart &&
 sudo -u rabbitmq rabbitmqctl stop || true
 
@@ -41,9 +41,9 @@ timeout 300s bash -c "until docker exec $DOCKER_QUEUE rabbitmq-diagnostics check
 
 # Performing prisma migration
 cd graphql-service &&
-npx prisma migrate dev &&
-npx prisma db seed --preview-feature &&
+sudo npx prisma migrate dev &&
+sudo npx prisma db seed --preview-feature &&
 cd .. &&
 
 # Starting all projects
-npm run start-all 
+sudo npm run start-all 
