@@ -46,4 +46,6 @@ sudo npx prisma db seed --preview-feature &&
 cd .. &&
 
 # Starting all projects
+sudo npm install
+sudo npm run install-all
 sudo npm run start-all 
