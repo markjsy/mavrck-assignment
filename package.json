@@ -11,19 +11,16 @@
         "ipc2": "cd insta-puppet-consumer && npm run dev2",
         "ips": "cd insta-puppet-service && npm run dev",
         "react-redux-ui": "cd react-redux-ui && npm run start",
-        
         "graphql-prod": "cd graphql-service && npm run start",
         "ipc1-prod": "cd insta-puppet-consumer && npm run start",
         "ipc2-prod": "cd insta-puppet-consumer && npm run start",
         "ips-prod": "cd insta-puppet-service && npm run start",
         "react-redux-ui-prod": "cd react-redux-ui && npm run build && npm run start",
-        
         "graphql-build": "cd graphql-service && npm run build",
         "ipc1-build": "cd insta-puppet-consumer && npm run build",
         "ipc2-build": "cd insta-puppet-consumer && npm run build",
         "ips-build": "cd insta-puppet-service && npm run build",
         "react-redux-ui-build": "cd react-redux-ui && npm run build",
-
         "install-all": "concurrently \"npm run graphql-install\" \"npm run ipc-install\" \"npm run ips-install\" \"npm run react-redux-ui-install\" \"npm install\" ",
         "start-all-local": "concurrently \"npm run graphql\" \"npm run ipc1\" \"npm run ipc2\" \"npm run ips\" \"npm run react-redux-ui\"",
         "start-all-prod": "concurrently \"npm run graphql-prod\" \"npm run ipc1-prod\" \"npm run ipc2-prod\" \"npm run ips-prod\" \"npm run react-redux-ui-prod\"",
