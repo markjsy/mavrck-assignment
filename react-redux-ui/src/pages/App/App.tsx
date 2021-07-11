@@ -12,6 +12,7 @@ function App() {
     const dispatch = useDispatch();
     let options = useSelector((state: ApplicationState) => state.searchBarReducer.options);
     let posts = useSelector((state: ApplicationState) => state.contentReducer.posts);
+    let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION,{shouldResubscribe: true})
 
     function onChange(e: ChangeEvent<HTMLInputElement>) {
         dispatch(searchBarActions.setSearchInput(e.target.value));
@@ -22,7 +23,6 @@ function App() {
     }
 
     function FullName(): ReactElement {
-        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION,{shouldResubscribe: true})
         console.log("data", data)
         console.log("error", error)
         console.log("loading", loading)
@@ -36,7 +36,6 @@ function App() {
     }
 
     function Biography(): ReactElement {
-        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION,{shouldResubscribe: true})
         console.log("data", data)
         console.log("error", error)
         console.log("loading", loading)
@@ -50,7 +49,6 @@ function App() {
     }
 
     function FollowerCount(): ReactElement {
-        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION,{shouldResubscribe: true})
         console.log("data", data)
         console.log("error", error)
         console.log("loading", loading)
@@ -64,7 +62,6 @@ function App() {
     }
 
     function RetrievedAt(): ReactElement {
-        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION,{shouldResubscribe: true})
         console.log("data", data)
         console.log("error", error)
         console.log("loading", loading)
@@ -78,7 +75,6 @@ function App() {
     }
 
     function PostCommentCount(): ReactElement {
-        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION,{shouldResubscribe: true})
         console.log("data", data)
         console.log("error", error)
         console.log("loading", loading)
@@ -92,7 +88,6 @@ function App() {
     }
 
     function PostLikeCount(): ReactElement {
-        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION,{shouldResubscribe: true})
         console.log("data", data)
         console.log("error", error)
         console.log("loading", loading)
@@ -106,7 +101,6 @@ function App() {
     }
 
     function PostType(): ReactElement {
-        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION,{shouldResubscribe: true})
         console.log("data", data)
         console.log("error", error)
         console.log("loading", loading)
@@ -120,7 +114,6 @@ function App() {
     }
 
     function PostMediaURL(): ReactElement {
-        let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION,{shouldResubscribe: true})
         console.log("data", data)
         console.log("error", error)
         console.log("loading", loading)
