@@ -33,4 +33,4 @@ cd mavrck-assignment
 
 npm install
 npm run install-all
-sudo ./deploy_local.bash
+sudo ./deploy.bash
