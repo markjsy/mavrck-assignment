@@ -1,7 +1,6 @@
 import 'reflect-metadata';
 import { ObjectType, Field, ID, InputType } from 'type-graphql';
-import { PostCreateInput } from '../resolvers/PostResolver';
-import { Post } from './Post';
+import { Post, PostCreateInput } from './Post';
 
 @ObjectType()
 export class User {
