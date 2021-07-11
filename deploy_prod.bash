@@ -50,8 +50,10 @@ sudo npm install
 sudo npm run install-all
 sudo npm run build-all-prod
 
-cd react-redux-ui/build
+cd /mavrck-assignment/react-redux-ui/build
 sudo rm -rf * /var/www/html
 sudo mkdir /var/www/html
-sudo cp -rf * /var/www/html
+sudo mv * /var/www/html
+
+
 sudo npm run start-all-prod 

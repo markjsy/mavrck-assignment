@@ -45,7 +45,7 @@ services:
             - QUEUE_NAME_UPDATE=puppetUpdate
             - AMQP_HOST=amqp://guest:guest@rabbitmq:5672/
             - GRAPHQL_URL=http://rabbitmq:2500/graphql
-            - GRAPHQL_SUB_URL=ws://rabbitmq:2500/subscriptions
+            - GRAPHQL_SUB_URL=ws://rabbitmq:2500/subscriptions/
             - PUPPET_URL=http://rabbitmq:2000/puppet/user
             - PUPPET_URL_UPDATE=http://rabbitmq:2000/puppet/userUpdate
 
@@ -63,7 +63,7 @@ services:
             - QUEUE_NAME_UPDATE=puppetUpdate
             - AMQP_HOST=amqp://guest:guest@rabbitmq:5672/
             - GRAPHQL_URL=http://rabbitmq:2500/graphql
-            - GRAPHQL_SUB_URL=ws://rabbitmq:2500/subscriptions
+            - GRAPHQL_SUB_URL=ws://rabbitmq:2500/subscriptions/
             - PUPPET_URL=http://rabbitmq:2000/puppet/user
             - PUPPET_URL_UPDATE=http://rabbitmq:2000/puppet/userUpdate
 
@@ -86,6 +86,6 @@ services:
             - 5000:5000
         environment:
             - GRAPHQL_URL=http://rabbitmq:2500/graphql
-            - GRAPHQL_SUB_URL=ws://rabbitmq:2500/subscriptions
+            - GRAPHQL_SUB_URL=ws://rabbitmq:2500/subscriptions/
             - PUPPET_URL=http://rabbitmq:2000/puppet/user
             - PUPPET_URL_UPDATE=http://rabbitmq:2000/puppet/userUpdate
