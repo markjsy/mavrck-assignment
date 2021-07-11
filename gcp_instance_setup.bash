@@ -24,7 +24,7 @@ sudo apt-get install screen
 
 # Clone Project
 sudo rm -rf mavrck-assignment
-git clone https://github.com/markjsy/mavrck-assignment.git
+sudo git clone https://github.com/markjsy/mavrck-assignment.git
 
 # Install apache2
 sudo apt-get update && sudo apt-get install apache2 -y
@@ -35,9 +35,8 @@ sudo a2enmod rewrite
 sudo apache2ctl restart
 
 # Change directory to project
-cd mavrck-assignment
+cd /mavrck-assignment
 
-
-npm install
-npm run install-all
+sudo npm install
+sudo npm run install-all
 sudo ./deploy_prod.bash
