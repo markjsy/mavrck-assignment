@@ -1,4 +1,4 @@
-import { CONFIG } from '../all-configs/config'
+import { CONFIG } from '../all-configs/config';
 
 export function POST_PUPPET(payload: string) {
     return fetch(CONFIG.REACT_REDUX_UI.PUPPET_URL_ADD, {
@@ -7,10 +7,9 @@ export function POST_PUPPET(payload: string) {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: JSON.stringify(payload)
-    })
-        .catch((e) => {
-            console.error('An error has occured: ' + e);
-        });
+    }).catch((e) => {
+        console.error('An error has occured: ' + e);
+    });
 }
 
 export function UPDATE_PUPPET(payload: string) {
@@ -20,10 +19,9 @@ export function UPDATE_PUPPET(payload: string) {
             'Content-Type': 'application/x-www-form-urlencoded'
         },
         body: JSON.stringify(payload)
-    })
-        .catch((e) => {
-            console.error('An error has occured: ' + e);
-        });
+    }).catch((e) => {
+        console.error('An error has occured: ' + e);
+    });
 }
 
 export function GET(url: string) {

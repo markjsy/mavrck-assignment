@@ -15,13 +15,13 @@ export const CONFIG = {
         HOSTNAME: process.env.SERVER_HOSTNAME || 'rabbitmq',
         RABBIT_AMQP_URL: process.env.AMQP_HOST ? `${process.env.AMQP_HOST}` : 'amqp://guest:guest@localhost:5672/',
         QUEUE_NAME_ADD: process.env.QUEUE_NAME_ADD ? process.env.QUEUE_NAME_ADD : 'puppet',
-        QUEUE_NAME_UPDATE: process.env.QUEUE_NAME_UPDATE ? process.env.QUEUE_NAME_UPDATE : 'puppetUpdate',
+        QUEUE_NAME_UPDATE: process.env.QUEUE_NAME_UPDATE ? process.env.QUEUE_NAME_UPDATE : 'puppetUpdate'
     },
-    
+
     REACT_REDUX_UI: {
         GRAPHQL_URL: process.env.GRAPHQL_URL ? process.env.GRAPHQL_URL : 'http://localhost:2500/graphql',
-        GRAPHQL_SUB_URL:  process.env.GRAPHQL_SUB_URL ? process.env.GRAPHQL_SUB_URL : 'ws://localhost:2500/graphql',
+        GRAPHQL_SUB_URL: process.env.GRAPHQL_SUB_URL ? process.env.GRAPHQL_SUB_URL : 'ws://localhost:2500/graphql',
         PUPPET_URL_ADD: process.env.PUPPET_URL ? process.env.PUPPET_URL : 'http://localhost:2000/puppet/user',
-        PUPPET_URL_UPDATE: process.env.PUPPET_URL_UPDATE ? process.env.PUPPET_URL_UPDATE : 'http://localhost:2000/puppet/userUpdate',
+        PUPPET_URL_UPDATE: process.env.PUPPET_URL_UPDATE ? process.env.PUPPET_URL_UPDATE : 'http://localhost:2000/puppet/userUpdate'
     }
-}
+};

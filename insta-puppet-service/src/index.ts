@@ -1,7 +1,7 @@
 import express = require('express');
 import http = require('http');
 import logging from './all-configs/logging';
-import {CONFIG} from './all-configs/config'
+import { CONFIG } from './all-configs/config';
 
 const sample = require('./routes/sampleRoute');
 const puppet = require('./routes/puppetRoute');

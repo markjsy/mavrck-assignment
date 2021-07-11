@@ -18,11 +18,7 @@ export class UserResolver {
     }
 
     @Mutation((returns) => User, { nullable: true })
-    async updateUser(
-        @PubSub() pubSub: PubSubEngine,
-        @Arg('data') data: UserCreateInput,
-        @Ctx() ctx: Context): Promise<User> {
-
+    async updateUser(@PubSub() pubSub: PubSubEngine, @Arg('data') data: UserCreateInput, @Ctx() ctx: Context): Promise<User> {
         const postData = data.posts?.map((post) => {
             return {
                 likeCount: post.likeCount,
@@ -46,16 +42,12 @@ export class UserResolver {
                 }
             }
         });
-        await pubSub.publish("NOTIFICATIONS", retVal);
+        await pubSub.publish('NOTIFICATIONS', retVal);
         return retVal;
     }
 
     @Mutation((returns) => User)
-    async addUser(
-        @PubSub() pubSub: PubSubEngine,
-        @Arg('data') data: UserCreateInput,
-        @Ctx() ctx: Context): Promise<User> {
-
+    async addUser(@PubSub() pubSub: PubSubEngine, @Arg('data') data: UserCreateInput, @Ctx() ctx: Context): Promise<User> {
         const postData = data.posts?.map((post) => {
             return {
                 likeCount: post.likeCount,
@@ -78,8 +70,8 @@ export class UserResolver {
                 }
             }
         });
-        await pubSub.publish("NOTIFICATIONS", retVal);
-        return retVal
+        await pubSub.publish('NOTIFICATIONS', retVal);
+        return retVal;
     }
 
     @Query(() => [User])
@@ -89,15 +81,14 @@ export class UserResolver {
 
     @Query((returns) => User, { nullable: true })
     async getUserByUserName(@Arg('userName') userName: string, @Ctx() ctx: Context) {
-        return ctx.prisma.user
-            .findUnique({
-                where: {
-                    userName: userName
-                }
-            })
+        return ctx.prisma.user.findUnique({
+            where: {
+                userName: userName
+            }
+        });
     }
 
-    @Subscription({ topics: "NOTIFICATIONS" })
+    @Subscription({ topics: 'NOTIFICATIONS' })
     normalSubscription(@Root() { id, retrievedAt, userName, fullName, followerCount, biography, posts }: User): User {
         const postData = posts?.map((post) => {
             return {
@@ -119,15 +110,13 @@ export class UserResolver {
             followerCount: followerCount,
             biography: biography,
             posts: postData
-        }
+        };
     }
 
-    @Mutation(returns => Boolean)
-    async pubSubMutation(
-        @PubSub() pubSub: PubSubEngine,
-        @Arg('data') data: UserCreateInput): Promise<boolean> {
+    @Mutation((returns) => Boolean)
+    async pubSubMutation(@PubSub() pubSub: PubSubEngine, @Arg('data') data: UserCreateInput): Promise<boolean> {
         const payload: any = { ...data };
-        await pubSub.publish("NOTIFICATIONS", payload);
+        await pubSub.publish('NOTIFICATIONS', payload);
         return true;
     }
 }

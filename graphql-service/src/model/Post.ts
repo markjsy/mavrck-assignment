@@ -43,12 +43,12 @@ export class PostCreateInput {
     @Field({ nullable: true })
     postType: string;
 
-    @Field({nullable: true})
+    @Field({ nullable: true })
     publishedAt: Date;
 
     @Field({ nullable: true })
     mediaURL: string;
 
-    @Field({ nullable: true})
+    @Field({ nullable: true })
     mediaCode: string;
 }

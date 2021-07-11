@@ -17,12 +17,12 @@ services:
         ports:
             - 5432:5432
         environment:
-            - POSTGRES_PASSWORD=mysecretpassword 
-    
+            - POSTGRES_PASSWORD=mysecretpassword
+
     graphql-service:
         image: graphql-service
         command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; /app/setup.bash'
-        depends_on: 
+        depends_on:
             - postgres
         links:
             - postgres
@@ -33,7 +33,7 @@ services:
 
     insta-puppet-consumer-1:
         image: insta-puppet-consumer
-        depends_on: 
+        depends_on:
             - rabbitmq
         ports:
             - 6000:6000
@@ -51,7 +51,7 @@ services:
 
     insta-puppet-consumer-2:
         image: insta-puppet-consumer
-        depends_on: 
+        depends_on:
             - rabbitmq
         ports:
             - 6100:6100
@@ -89,4 +89,3 @@ services:
             - GRAPHQL_SUB_URL=ws://rabbitmq:2500/graphql
             - PUPPET_URL=http://rabbitmq:2000/puppet/user
             - PUPPET_URL_UPDATE=http://rabbitmq:2000/puppet/userUpdate
-

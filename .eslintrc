@@ -1,12 +1,12 @@
 {
     "env": {
-      "commonjs": true,
-      "es6": true,
-      "node": true
+        "commonjs": true,
+        "es6": true,
+        "node": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
-      "ecmaVersion": 2020
+        "ecmaVersion": 2020
     },
     "rules": {
         "accessor-pairs": "off", // enforce getter and setter pairs in objects
@@ -74,4 +74,4 @@
         "wrap-iife": "off", // require parentheses around immediate 'function` invocations
         "yoda": "off" // require or disallow "Yoda" conditions
     }
-  }
+}

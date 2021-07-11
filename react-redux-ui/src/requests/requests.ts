@@ -10,7 +10,7 @@ export async function getAllUsers() {
 
 export async function getUserByUserName(userName: string) {
     const response = await GRAPHQL(GET_USER_BY_USERNAME_QUERY(userName));
-    const respData: GetUserByUserNameResponse = response && response.data? response.data : null;
+    const respData: GetUserByUserNameResponse = response && response.data ? response.data : null;
     if (respData && respData.getUserByUserName) {
         respData.getUserByUserName.posts?.sort((a: Post, b: Post) => {
             return new Date(a.publishedAt).valueOf() - new Date(b.publishedAt).valueOf();
@@ -23,7 +23,7 @@ export async function getUserByUserName(userName: string) {
 
 export async function addUser(user: User, post?: Post[]) {
     const response = await GRAPHQL(ADD_USER_MUTATION(user, post));
-    const data: AddUserResponse = response && response.data? response.data : null;
+    const data: AddUserResponse = response && response.data ? response.data : null;
     return data;
 }
 

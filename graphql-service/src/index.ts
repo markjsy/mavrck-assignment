@@ -6,7 +6,7 @@ import { ApolloServer } from 'apollo-server';
 import { DateTimeResolver } from 'graphql-scalars';
 import { context } from './singleton/Context';
 import { GraphQLScalarType } from 'graphql';
-import {CONFIG} from './all-configs/config'
+import { CONFIG } from './all-configs/config';
 
 enum SortOrder {
     asc = 'asc',

@@ -25,6 +25,8 @@ sudo apt-get install screen
 # Clone Project
 git clone https://github.com/markjsy/mavrck-assignment.git
 
+# Install apache2
+sudo apt-get update && sudo apt-get install apache2 -y
 
 # Change directory to project
 cd mavrck-assignment
