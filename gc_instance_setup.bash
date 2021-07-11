@@ -23,6 +23,7 @@ sudo docker pull rabbitmq
 sudo apt-get install screen
 
 # Clone Project
+sudo rm -rf mavrck-assignment
 git clone https://github.com/markjsy/mavrck-assignment.git
 
 # Install apache2
@@ -39,4 +40,4 @@ cd mavrck-assignment
 
 npm install
 npm run install-all
-sudo ./deploy.bash
+sudo ./deploy_prod.bash
