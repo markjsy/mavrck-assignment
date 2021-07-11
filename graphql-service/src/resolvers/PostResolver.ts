@@ -3,32 +3,6 @@ import { Resolver, Query, Mutation, Arg, Ctx, Int, InputType, Field } from 'type
 import { Post } from '../model/Post';
 import { Context } from '../singleton/Context';
 
-export enum SortOrder {
-    asc = 'asc',
-    desc = 'desc'
-}
-
-@InputType()
-export class PostCreateInput {
-    @Field({ nullable: true })
-    likeCount: number;
-
-    @Field({ nullable: true })
-    commentCount: number;
-
-    @Field({ nullable: true })
-    postType: string;
-
-    @Field({nullable: true})
-    publishedAt: Date;
-
-    @Field({ nullable: true })
-    mediaURL: string;
-
-    @Field({ nullable: true})
-    mediaCode: string;
-}
-
 @Resolver(Post)
 export class PostResolver {
     @Query((returns) => Post, { nullable: true })

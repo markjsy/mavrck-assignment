@@ -8,6 +8,11 @@ import { context } from './singleton/Context';
 import { GraphQLScalarType } from 'graphql';
 import {CONFIG} from './all-configs/config'
 
+enum SortOrder {
+    asc = 'asc',
+    desc = 'desc'
+}
+
 async function app() {
     const schema = await tq.buildSchema({
         resolvers: [PostResolver, UserResolver],

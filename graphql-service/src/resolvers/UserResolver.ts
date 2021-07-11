@@ -1,27 +1,8 @@
 import 'reflect-metadata';
-import { Resolver, Query, Mutation, Arg, Ctx, FieldResolver, Root, Int, InputType, Field, Subscription, ResolverFilterData, PubSubEngine, PubSub, ID } from 'type-graphql';
+import { Resolver, Query, Mutation, Arg, Ctx, FieldResolver, Root, Int, InputType, Field, Subscription, ResolverFilterData, PubSubEngine, PubSub, ID, Publisher } from 'type-graphql';
 import { Post } from '../model/Post';
-import { User } from '../model/User';
+import { User, UserCreateInput } from '../model/User';
 import { Context } from '../singleton/Context';
-import { PostCreateInput } from './PostResolver';
-
-@InputType()
-class UserCreateInput {
-    @Field({ nullable: false })
-    userName: string;
-
-    @Field({ nullable: true })
-    fullName: string;
-
-    @Field({ nullable: true })
-    followerCount: number;
-
-    @Field({ nullable: true })
-    biography: string;
-
-    @Field((type) => [PostCreateInput], { nullable: true })
-    posts: [PostCreateInput];
-}
 
 @Resolver(User)
 export class UserResolver {
