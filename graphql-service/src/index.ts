@@ -23,6 +23,9 @@ async function app() {
         schema: schema,
         context: context,
         playground: true,
+        subscriptions: {
+            path: '/subscriptions'
+        },
         cors: true
     });
 
