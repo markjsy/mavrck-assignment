@@ -52,5 +52,6 @@ sudo npm run build-all-prod
 
 cd react-redux-ui/build
 sudo rm -rf * /var/www/html
+sudo mkdir /var/www/html
 sudo cp -rf * /var/www/html
 sudo npm run start-all-prod 

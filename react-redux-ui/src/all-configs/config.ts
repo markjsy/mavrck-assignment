@@ -20,7 +20,7 @@ export const CONFIG = {
 
     REACT_REDUX_UI: {
         GRAPHQL_URL: process.env.GRAPHQL_URL ? process.env.GRAPHQL_URL : 'http://localhost:2500/graphql',
-        GRAPHQL_SUB_URL: process.env.GRAPHQL_SUB_URL ? process.env.GRAPHQL_SUB_URL : 'ws://localhost:2500/subscriptions/',
+        GRAPHQL_SUB_URL: process.env.GRAPHQL_SUB_URL ? process.env.GRAPHQL_SUB_URL : 'ws://localhost:2500/subscriptions',
         PUPPET_URL_ADD: process.env.PUPPET_URL ? process.env.PUPPET_URL : 'http://localhost:2000/puppet/user',
         PUPPET_URL_UPDATE: process.env.PUPPET_URL_UPDATE ? process.env.PUPPET_URL_UPDATE : 'http://localhost:2000/puppet/userUpdate'
     }

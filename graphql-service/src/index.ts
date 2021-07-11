@@ -24,7 +24,7 @@ async function app() {
         context: context,
         playground: true,
         subscriptions: {
-            path: '/subscriptions/'
+            path: '/subscriptions'
         },
         cors: true
     });
