@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEvent, ReactElement } from 'react';
+import { ChangeEvent, KeyboardEvent, MouseEvent, ReactElement } from 'react';
 import './App.scss';
 import SearchBar from '../../components/SearchBar/SearchBar';
 import { useDispatch, useSelector } from 'react-redux';
@@ -20,6 +20,15 @@ function App() {
 
     function onClick(e: MouseEvent<HTMLElement>) {
         dispatch(searchBarActions.searchThunk());
+    }
+
+    function onKeyDown(e: KeyboardEvent<HTMLInputElement>){
+
+        console.log('e',e);
+        if (e.code == 'Enter') {
+            dispatch(searchBarActions.searchThunk());
+            e.preventDefault();
+        }
     }
 
     function FullName(): ReactElement {
@@ -158,14 +167,13 @@ function App() {
             return <div>No post media url found</div>;
         }
     }
-
     return (
         <div className="App">
             <Button onClick={onClick} color="primary" variant="contained">
                 Search/Refresh
             </Button>
             <div className="space-between"></div>
-            <SearchBar onChange={onChange} options={options} />
+            <SearchBar onKeyDown={onKeyDown} onChange={onChange} options={options} />
             <div className="space-between"></div>
             <FullName />
             <Biography />
