@@ -41,3 +41,4 @@
 * Prisma
 * Apollo Server
 * RabbitMQ
+* Google Cloud Platform
