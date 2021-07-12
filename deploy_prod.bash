@@ -55,5 +55,5 @@ sudo mkdir /var/www/html
 cd /mavrck-assignment/react-redux-ui/build 
 sudo cp -a /mavrck-assignment/react-redux-ui/build/. /var/www/html/
 
-
+cd /mavrck-assignment
 sudo npm run start-all-prod 
