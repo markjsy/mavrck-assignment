@@ -48,5 +48,4 @@ cd .. &&
 # Starting all projects
 sudo npm install
 sudo npm run install-all
-sudo npm run build-all-prod
-sudo npm run start-all-prod 
+sudo npm run start-all-local 
