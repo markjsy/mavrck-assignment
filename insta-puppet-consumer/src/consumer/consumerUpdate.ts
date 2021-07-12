@@ -1,6 +1,7 @@
 import amqplib from 'amqplib';
 import { getUserInformation, Post, updateUser, User } from './puppet';
 import { CONFIG } from '../all-configs/config';
+require('dotenv').config();
 
 async function consume() {
     try {

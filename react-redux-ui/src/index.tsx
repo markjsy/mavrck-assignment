@@ -12,8 +12,10 @@ import { ApolloClient, InMemoryCache, ApolloProvider, ApolloLink } from '@apollo
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { CONFIG } from './all-configs/config';
 import { getOperationAST } from 'graphql';
-const loggerMiddleware = createLogger();
+require('dotenv').config();
+console.log("DOTENV",process.env)
 
+const loggerMiddleware = createLogger();
 const store = createStore(rootReducer, applyMiddleware(thunkMiddleware, loggerMiddleware));
 
 const link = ApolloLink.split(
@@ -32,6 +34,7 @@ const client = new ApolloClient({
     link,
     cache: new InMemoryCache()
 });
+
 
 ReactDOM.render(
     <React.StrictMode>

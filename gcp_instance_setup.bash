@@ -1,9 +1,6 @@
 
 #!/bin/bash
 
-#Env variables
-export MAIN_HOSTNAME=mark-sy
-
 # Updating apt-get
 sudo apt-get -y update
 sudo apt-get -y upgrade

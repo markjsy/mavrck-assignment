@@ -2,6 +2,7 @@ import express = require('express');
 import http = require('http');
 import logging from './all-configs/logging';
 import { CONFIG } from './all-configs/config';
+require('dotenv').config();
 
 const sample = require('./routes/sampleRoute');
 const puppet = require('./routes/puppetRoute');

@@ -7,6 +7,7 @@ import { DateTimeResolver } from 'graphql-scalars';
 import { context } from './singleton/Context';
 import { GraphQLScalarType } from 'graphql';
 import { CONFIG } from './all-configs/config';
+require('dotenv').config();
 
 enum SortOrder {
     asc = 'asc',

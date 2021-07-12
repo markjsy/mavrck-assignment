@@ -1,6 +1,7 @@
 import puppeteer = require('puppeteer');
 import fetch from 'node-fetch';
 import { CONFIG } from '../all-configs/config';
+require('dotenv').config();
 
 export interface User {
     id?: number;
