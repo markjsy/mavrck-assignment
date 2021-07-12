@@ -17,7 +17,7 @@ DATABASE_URL="postgresql://postgres:mysecretpassword@localhost:5432/mavrckdb?sch
 6) In your terminal run:
     * npm install
     * npm run install-all
-    * ./deploy.bash
+    * ./deploy_local.bash
 
 
 ## Links

@@ -1,4 +1,3 @@
-const MAIN_HOSTNAME:string = '34.123.186.118'
 export const CONFIG = {
     GRAPHQL: {
         GRAPHQL_PORT: process.env.GRAPHQL_PORT || 2500,
@@ -9,7 +8,7 @@ export const CONFIG = {
         RABBIT_AMQP_URL: process.env.AMQP_HOST ? `${process.env.AMQP_HOST}` : `amqp://guest:guest@localhost`,
         QUEUE_NAME_ADD: process.env.QUEUE_NAME_ADD ? process.env.QUEUE_NAME_ADD : `puppet`,
         QUEUE_NAME_UPDATE: process.env.QUEUE_NAME_UPDATE ? process.env.QUEUE_NAME_UPDATE : `puppetUpdate`,
-        GRAPHQL_URL: process.env.GRAPHQL_URL ? process.env.GRAPHQL_URL : `http://${MAIN_HOSTNAME}:2500/graphql`
+        GRAPHQL_URL: process.env.GRAPHQL_URL ? process.env.GRAPHQL_URL : `http://localhost:2500/graphql`
     },
 
     INSTA_PUPPET_SERVICE: {
@@ -21,9 +20,9 @@ export const CONFIG = {
     },
 
     REACT_REDUX_UI: {
-        GRAPHQL_URL: process.env.GRAPHQL_URL ? process.env.GRAPHQL_URL : `http://${MAIN_HOSTNAME}:2500/graphql`,
-        GRAPHQL_SUB_URL: process.env.GRAPHQL_SUB_URL ? process.env.GRAPHQL_SUB_URL : `ws://${MAIN_HOSTNAME}:2500/subscriptions/`,
-        PUPPET_URL_ADD: process.env.PUPPET_URL ? process.env.PUPPET_URL : `http://${MAIN_HOSTNAME}:2000/puppet/user`,
-        PUPPET_URL_UPDATE: process.env.PUPPET_URL_UPDATE ? process.env.PUPPET_URL_UPDATE : `http://${MAIN_HOSTNAME}:2000/puppet/userUpdate`
+        GRAPHQL_URL: process.env.GRAPHQL_URL ? process.env.GRAPHQL_URL : `http://localhost:2500/graphql`,
+        GRAPHQL_SUB_URL: process.env.GRAPHQL_SUB_URL ? process.env.GRAPHQL_SUB_URL : `ws://localhost:2500/subscriptions/`,
+        PUPPET_URL_ADD: process.env.PUPPET_URL ? process.env.PUPPET_URL : `http://localhost:2000/puppet/user`,
+        PUPPET_URL_UPDATE: process.env.PUPPET_URL_UPDATE ? process.env.PUPPET_URL_UPDATE : `http://localhost:2000/puppet/userUpdate`
     }
 };

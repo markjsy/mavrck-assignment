@@ -44,4 +44,4 @@ cd /mavrck-assignment
 
 sudo npm install
 sudo npm run install-all
-sudo ./deploy_prod.bash
+sudo ./deploy_local.bash
