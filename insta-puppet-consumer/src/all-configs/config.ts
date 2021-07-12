@@ -1,4 +1,4 @@
-const MAIN_HOSTNAME:string = `${process.env.MAIN_HOSTNAME}` ? `${process.env.MAIN_HOSTNAME}` : `localhost`
+const MAIN_HOSTNAME:string = 'mark-sy'
 export const CONFIG = {
     GRAPHQL: {
         GRAPHQL_PORT: process.env.GRAPHQL_PORT || 2500,
