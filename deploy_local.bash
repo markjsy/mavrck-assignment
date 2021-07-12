@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Installing node_module all projects
+sudo npm install
+sudo npm run install-all
+
 # Killing all relevant ports/processes needed to run
 sudo docker stop $(docker ps -a -q) &&
 sudo docker rm $(docker ps -a -q) &&
@@ -45,7 +49,4 @@ sudo npx prisma migrate dev &&
 sudo npx prisma db seed --preview-feature &&
 cd .. &&
 
-# Starting all projects
-sudo npm install
-sudo npm run install-all
 sudo npm run start-all-local 

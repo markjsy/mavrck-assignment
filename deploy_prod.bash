@@ -1,5 +1,9 @@
 #!/bin/bash
 
+# Install node_modules all projects
+sudo npm install
+sudo npm run install-all
+
 # Killing all relevant ports/processes needed to run
 sudo docker stop $(docker ps -a -q) &&
 sudo docker rm $(docker ps -a -q) &&
@@ -45,15 +49,15 @@ sudo npx prisma migrate dev &&
 sudo npx prisma db seed --preview-feature &&
 cd .. &&
 
-# Starting all projects
-sudo npm install
-sudo npm run install-all
+# Building production files
 sudo npm run build-all-prod
 
+# Moving production files into apache folder
 sudo rm -rf /var/www/html 
 sudo mkdir /var/www/html 
 cd /mavrck-assignment/react-redux-ui/build 
 sudo cp -a /mavrck-assignment/react-redux-ui/build/. /var/www/html/
 
+# Starting projects 
 cd /mavrck-assignment
 sudo npm run start-all-prod 
