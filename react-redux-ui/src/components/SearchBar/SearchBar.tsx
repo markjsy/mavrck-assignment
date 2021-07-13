@@ -5,26 +5,26 @@ import { SearchBarOptions } from '../../interfaces/interface';
 import './SearchBar.scss';
 
 //Default props
-const defaultSearchBarProps = {};
+const defaultSearchBarProps = {
+};
 
 type SearchBarProps = {
     options: SearchBarOptions[];
-    onChange: (e: ChangeEvent<HTMLInputElement>) => void;
-    onKeyDown: (e: KeyboardEvent<HTMLInputElement>) => void;
+    onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+    onKeyDown?: (e: KeyboardEvent<HTMLInputElement>) => void;
 } & typeof defaultSearchBarProps;
 
 function SearchBar({ options, onChange, onKeyDown}: SearchBarProps): ReactElement {
-  
     return (
         <Autocomplete
             id="text-field-search"
             freeSolo
+            
             options={options}
             getOptionLabel={(option: SearchBarOptions) => (option && option.title ? option.title : '')}
-            renderInput={(params) => <TextField {...params} onKeyDown={onKeyDown} onChange={onChange} label="Search" variant="outlined" />}
+            renderInput={(params) => <TextField  {...params} onKeyDown={onKeyDown} onChange={onChange} label="Search" variant="outlined" />}
         />
     );
 }
-
 SearchBar.defaultProps = defaultSearchBarProps;
 export default SearchBar;

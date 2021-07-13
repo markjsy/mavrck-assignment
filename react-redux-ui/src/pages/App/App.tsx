@@ -11,7 +11,6 @@ import { Button } from '@material-ui/core';
 function App() {
     const dispatch = useDispatch();
     let options = useSelector((state: ApplicationState) => state.searchBarReducer.options);
-    let posts = useSelector((state: ApplicationState) => state.contentReducer.posts);
     let { data, error, loading } = useSubscription(GET_USER_SUBSCRIPTION, { shouldResubscribe: true });
 
     function onChange(e: ChangeEvent<HTMLInputElement>) {
@@ -24,7 +23,6 @@ function App() {
 
     function onKeyDown(e: KeyboardEvent<HTMLInputElement>){
 
-        console.log('e',e);
         if (e.code == 'Enter') {
             dispatch(searchBarActions.searchThunk());
             e.preventDefault();
@@ -32,9 +30,6 @@ function App() {
     }
 
     function FullName(): ReactElement {
-        console.log('data', data);
-        console.log('error', error);
-        console.log('loading', loading);
         if (loading === false) {
             const field = data.normalSubscription.fullName;
             return (
@@ -49,9 +44,6 @@ function App() {
     }
 
     function Biography(): ReactElement {
-        console.log('data', data);
-        console.log('error', error);
-        console.log('loading', loading);
         if (loading === false) {
             const field = data.normalSubscription.biography;
             return (
@@ -65,9 +57,6 @@ function App() {
     }
 
     function FollowerCount(): ReactElement {
-        console.log('data', data);
-        console.log('error', error);
-        console.log('loading', loading);
         if (loading === false) {
             const field = data.normalSubscription.followerCount;
             return (
@@ -82,9 +71,6 @@ function App() {
     }
 
     function RetrievedAt(): ReactElement {
-        console.log('data', data);
-        console.log('error', error);
-        console.log('loading', loading);
         if (loading === false) {
             const field = data.normalSubscription.retrievedAt;
             return (
@@ -99,9 +85,6 @@ function App() {
     }
 
     function PostCommentCount(): ReactElement {
-        console.log('data', data);
-        console.log('error', error);
-        console.log('loading', loading);
         if (loading === false) {
             const field = data.normalSubscription.posts[0].commentCount;
             return (
@@ -116,9 +99,6 @@ function App() {
     }
 
     function PostLikeCount(): ReactElement {
-        console.log('data', data);
-        console.log('error', error);
-        console.log('loading', loading);
         if (loading === false) {
             const field = data.normalSubscription.posts[0].likeCount;
             return (
@@ -133,9 +113,6 @@ function App() {
     }
 
     function PostType(): ReactElement {
-        console.log('data', data);
-        console.log('error', error);
-        console.log('loading', loading);
         if (loading === false) {
             const field = data.normalSubscription.posts[0].postType;
             return (
@@ -150,9 +127,6 @@ function App() {
     }
 
     function PostMediaURL(): ReactElement {
-        console.log('data', data);
-        console.log('error', error);
-        console.log('loading', loading);
         if (loading === false) {
             const field = data.normalSubscription.posts[0].mediaURL;
             return (
@@ -172,6 +146,7 @@ function App() {
             <Button onClick={onClick} color="primary" variant="contained">
                 Search/Refresh
             </Button>
+            
             <div className="space-between"></div>
             <SearchBar onKeyDown={onKeyDown} onChange={onChange} options={options} />
             <div className="space-between"></div>
