@@ -1,6 +1,7 @@
 import { searchBarActionConstants } from '../constants/actions/searchBarActionConstants';
 import { ApplicationState, DropdownOptions } from '../interfaces/interface';
 import { getUserByUserName, postToPuppet, updateToPuppet } from '../requests/requests';
+import { contentActions } from './contentActions';
 
 export const searchBarActions = {
     setDropdownOptions,
@@ -34,6 +35,7 @@ function searchThunk() {
             updateToPuppet(userName);
             console.log('updating current user');
         }
+        dispatch(contentActions.setContent(null));
         console.log('userDataResponse', userDataResponse);
     };
 }

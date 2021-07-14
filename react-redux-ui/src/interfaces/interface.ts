@@ -65,7 +65,13 @@ export interface ContentReducer {
     biography: string;
     followerCount: number;
     retrievedAt: string;
-    posts: Post[];
+    id?: number;
+    likeCount?: number;
+    commentCount?: number;
+    postType?: string;
+    mediaURL?: string;
+    mediaCode?: string;
+    publishedAt: string;
 }
 
 export interface ApplicationState {
